@@ -1,5 +1,13 @@
 {
   "name": "breakable-toy",
   "private": true,
-  "dependencies": {}
+  "engines": {
+    "node": ">=4",
+    "yarn": ">0.25"
+  },
+  "dependencies": {
+    "react-bootstrap": "^0.31.3",
+    "react-on-rails": "^9.0.2",
+    "recordrtc": "^5.4.2"
+  }
 }
