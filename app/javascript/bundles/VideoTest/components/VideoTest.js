@@ -8,7 +8,7 @@ import { Grid, Row, Col, Button, ButtonToolbar } from 'react-bootstrap';
 const hasGetUserMedia = !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
                         navigator.mozGetUserMedia || navigator.msGetUserMedia);
 
-class RecordPage extends React.Component {
+class VideoTest extends React.Component {
   constructor(props) {
     super(props);
 
@@ -116,4 +116,4 @@ class RecordPage extends React.Component {
   }
 }
 
-export default RecordPage;
+export default VideoTest;

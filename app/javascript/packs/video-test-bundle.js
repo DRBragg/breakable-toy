@@ -1,6 +1,6 @@
 import ReactOnRails from 'react-on-rails';
 
-import HelloWorld from '../bundles/VideoTest/components/VideoTest';
+import VideoTest from '../bundles/VideoTest/components/VideoTest';
 
 ReactOnRails.register({
   VideoTest,
