@@ -1,11 +1,11 @@
 import React from 'react';
+import { Panel } from 'react-bootstrap';
 
 const CardView = (props) => {
   return (
-    <div>
-      <h2>Card Title</h2>
-      <h3>Card Body-- blah blah the card tesxt will be here</h3>
-    </div>
+    <Panel header="Card Type" bsStyle="warning">
+      Card question/prompt
+    </Panel>
   )
 }
 

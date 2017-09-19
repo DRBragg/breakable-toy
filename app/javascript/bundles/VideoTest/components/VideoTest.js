@@ -2,7 +2,7 @@ import React from 'react';
 import Webcam from './Webcam';
 import CardView from './CardView';
 import RecordRTC from 'recordrtc';
-import { Grid, Row, Col, Button, ButtonToolbar } from 'react-bootstrap';
+import { Grid, Row, Col, Button, ButtonToolbar, FormGroup, FormControl, InputGroup } from 'react-bootstrap';
 
 //ensure the users browser supposort gUM
 const hasGetUserMedia = !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
@@ -55,16 +55,16 @@ class VideoTest extends React.Component {
   startRecord() {
   console.log('recording started');
     this.captureUserMedia((stream) => {
-      let options;
-      if (MediaRecorder.isTypeSupported('video/webm;codecs=vp9')) {
-        options = {
-          mimeType: 'video/webm;codecs=vp9'
-        };
-      } else {
-        options = {
-          mimeType: 'video/webm;codecs=vp8'
-        }
-      }
+      let options = { type: 'video' }
+      // if (MediaRecorder.isTypeSupported('video/webm;codecs=vp9')) {
+      //   options = {
+      //     mimeType: 'video/webm;codecs=vp9'
+      //   };
+      // } else {
+      //   options = {
+      //     mimeType: 'video/webm;codecs=vp8'
+      //   }
+      // }
       this.setState({ recordVideo: RecordRTC(stream, options), recording: true });
       this.state.recordVideo.startRecording();
     });
@@ -75,15 +75,23 @@ class VideoTest extends React.Component {
     console.log('recording stopped')
     this.state.recordVideo.stopRecording(() => {
       let recordedBlob = this.state.recordVideo.getBlob();
-      let blobURL = URL.createObjectURL(recordedBlob);
-      console.log('Blob', blobURL);
-      this.setState({ upload: true, recording: false, video: blobURL });
+      console.log('Blob', recordedBlob);
+      let header = ReactOnRails.authenticityHeaders({'Accept': 'application/json , */*'});
+      fetch("/videos", {
+        method: "POST",
+        headers: header,
+        credentials: 'same-origin',
+        body: recordedBlob
+      }).then(response => {
+        console.log('response', response.json());
+      })
+      this.setState({ upload: true, recording: false });
     });
   }
 
   //this method will fetch a new card when clicked
   getNewCard() {
-    window.alert("This will fetch a new card")
+    window.alert("This will display the next card")
   }
 
   render() {
@@ -91,20 +99,41 @@ class VideoTest extends React.Component {
       <Grid>
         <Row>
           <Col xs={12} className="text-center">
-            <h1>The Interview Game</h1>
+            <h1>New Game</h1>
+          </Col>
+          <Col xs={12} className="text-center">
+            <FormGroup>
+              <InputGroup>
+                <InputGroup.Addon>
+                  Select the number of cards you want to play with
+                </InputGroup.Addon>
+                <FormControl componentClass="select" placeholder="select">
+                  <option value="select">select</option>
+                  <option value="1">1 - Random card</option>
+                  <option value="2.1">2 - 1 Opener card & 1 Closer card</option>
+                  <option value="2.2">2 - 1 Opener card & 1 Question card</option>
+                  <option value="2.3">2 - 1 Question card & 1 Closer card</option>
+                  <option value="3">3 - 1 Opener card, 1 Question card, & 1 Closer card</option>
+                  <option value="4">4 - 1 Opener card, 1 Question card, 1 Personal card, & 1 Closer card</option>
+                  <option value="5">5 - 1 Opener card, 2 Question cards, 1 Personal card, & 1 Closer card</option>
+                </FormControl>
+              </InputGroup>
+            </FormGroup>
           </Col>
         </Row>
         <Row>
-          <Col xs={6} xsOffset={3}>
-            <div><Webcam src={this.state.src}/></div>
+          <Col xs={4} xsOffset={1} className="text-center">
             <CardView/>
           </Col>
+          <Col xs={6} xsOffset={1}>
+            <Webcam src={this.state.src}/>
+          </Col>
         </Row>
         <Row>
-        <Col xs={3} xsOffset={3}>
-          <Button onClick={this.getNewCard} disabled={this.state.recording}>New Card</Button>
+        <Col xs={4} xsOffset={1} className="text-center">
+          <Button onClick={this.getNewCard} disabled={this.state.recording}>Next Card</Button>
         </Col>
-          <Col xs={3} xsOffset={1}>
+          <Col xs={6} xsOffset={1} className="text-center">
             <ButtonToolbar>
               <Button bsStyle="success" onClick={this.startRecord} disabled={this.state.recording}>Start Record</Button>
               <Button bsStyle="danger" onClick={this.stopRecord} disabled={!this.state.recording}>Stop Record</Button>
