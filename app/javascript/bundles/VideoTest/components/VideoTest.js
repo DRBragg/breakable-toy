@@ -11,13 +11,10 @@ const hasGetUserMedia = !!(navigator.getUserMedia || navigator.webkitGetUserMedi
 class VideoTest extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       recordVideo: null,
       src: null,
       recording: false,
-      upload: null,
-      video: null
     };
 
     this.requestUserMedia = this.requestUserMedia.bind(this);
@@ -47,24 +44,13 @@ class VideoTest extends React.Component {
   requestUserMedia() {
     this.captureUserMedia((stream) => {
       this.setState({ src: window.URL.createObjectURL(stream) });
-      console.log('setting state', this.state)
     });
   }
 
   //the an RecordRTC instence to state and call it to start recording
   startRecord() {
-  console.log('recording started');
     this.captureUserMedia((stream) => {
       let options = { type: 'video' }
-      // if (MediaRecorder.isTypeSupported('video/webm;codecs=vp9')) {
-      //   options = {
-      //     mimeType: 'video/webm;codecs=vp9'
-      //   };
-      // } else {
-      //   options = {
-      //     mimeType: 'video/webm;codecs=vp8'
-      //   }
-      // }
       this.setState({ recordVideo: RecordRTC(stream, options), recording: true });
       this.state.recordVideo.startRecording();
     });
@@ -85,7 +71,7 @@ class VideoTest extends React.Component {
       }).then(response => {
         console.log('response', response.json());
       })
-      this.setState({ upload: true, recording: false });
+      this.setState({ recording: false });
     });
   }
 
@@ -131,7 +117,7 @@ class VideoTest extends React.Component {
         </Row>
         <Row>
         <Col xs={4} xsOffset={1} className="text-center">
-          <Button onClick={this.getNewCard} disabled={this.state.recording}>Next Card</Button>
+          <Button onClick={this.getNewCard} disabled={!this.state.recording}>Next Card</Button>
         </Col>
           <Col xs={6} xsOffset={1} className="text-center">
             <ButtonToolbar>

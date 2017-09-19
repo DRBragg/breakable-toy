@@ -10,10 +10,15 @@ class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false
+      showModal: false,
+      loggedIn: false
     }
     this.close = this.close.bind(this)
     this.open = this.open.bind(this)
+  }
+
+  handleLogin() {
+    this.setState({ loggedIn: true });
   }
 
   close() {
@@ -35,14 +40,16 @@ class NavBar extends React.Component {
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
+          {this.state.loggedIn &&
           <Nav>
             <NavItem eventKey={1} href="#">New Game</NavItem>
             <OverlayTrigger placement="bottom" overlay={tooltip}>
               <NavItem eventKey={2} href="#">My Games <Badge>3</Badge></NavItem>
             </OverlayTrigger>
-          </Nav>
+          </Nav>}
           <Nav pullRight>
-            <NavItem eventKey={1} onClick={this.open}>LogIn</NavItem>
+            {!this.state.loggedIn && <NavItem eventKey={1} onClick={this.open}>Log In</NavItem>}
+            {this.state.loggedIn && <NavItem eventKey={1} href="#">My Account</NavItem>}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
