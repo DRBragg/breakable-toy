@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  get 'hello_world', to: 'hello_world#index'
+  root "videos#index"
+
+  # devise_for :users
 
   resources :videos, only: [:index, :new, :create]
+  resources :sessions, only: [:create, :destroy]
 end
