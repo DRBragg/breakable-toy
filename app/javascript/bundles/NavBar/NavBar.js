@@ -17,13 +17,13 @@ class NavBar extends React.Component {
       <Navbar inverse collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#">Interview Game</a>
+            <a href="/">Interview Game</a>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-            <NavItem eventKey={1} href="#">New Game</NavItem>
+            <NavItem eventKey={1} href="/videos/new">New Game</NavItem>
             <OverlayTrigger placement="bottom" overlay={tooltip}>
               <NavItem eventKey={2} href="#">My Games <Badge>3</Badge></NavItem>
             </OverlayTrigger>

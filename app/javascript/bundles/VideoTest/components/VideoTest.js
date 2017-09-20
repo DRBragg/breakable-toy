@@ -25,7 +25,7 @@ class VideoTest extends React.Component {
     this.requestUserMedia = this.requestUserMedia.bind(this)
     this.startRecord = this.startRecord.bind(this)
     this.stopRecord = this.stopRecord.bind(this)
-    // this.handleChange = this.handleChange.bind(this)
+    this.handleChange = this.handleChange.bind(this)
     this.getNewCard = this.getNewCard.bind(this)
   }
 
@@ -51,7 +51,6 @@ class VideoTest extends React.Component {
   requestUserMedia() {
     this.captureUserMedia((stream) => {
       this.setState({ src: window.URL.createObjectURL(stream) });
-      console.log('setting state', this.state)
     });
   }
 
@@ -60,15 +59,6 @@ class VideoTest extends React.Component {
   console.log('recording started');
     this.captureUserMedia((stream) => {
       let options = { type: 'video' }
-      // if (MediaRecorder.isTypeSupported('video/webm;codecs=vp9')) {
-      //   options = {
-      //     mimeType: 'video/webm;codecs=vp9'
-      //   };
-      // } else {
-      //   options = {
-      //     mimeType: 'video/webm;codecs=vp8'
-      //   }
-      // }
       this.setState({ recordVideo: RecordRTC(stream, options), recording: true });
       this.state.recordVideo.startRecording();
     });
@@ -95,16 +85,14 @@ class VideoTest extends React.Component {
 
   //this method will fetch a new card when clicked
   getNewCard() {
-    let currentDeck = this.state.deck
-    let nextCard = currentDeck.shift()
-    this.setState({ deck: currentDeck, currentCard: nextCard })
+    window.alert("Get new card!")
   }
 
-  // handleChange(e){
-  //   setGame = e.target.value;
-  //   setDeck = this.state.deck;
-  //   this.setState({ gameType:  })
-  // }
+  //set state to game type that the user chose
+  handleChange(e){
+    setGame = e.target.value;
+    this.setState({ gameType: setGame})
+  }
 
   render() {
     return(
