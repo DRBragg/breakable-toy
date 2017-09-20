@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar, Nav, NavItem, Badge, Tooltip, OverlayTrigger, Modal } from 'react-bootstrap';
 import LoginForm from './LoginForm';
+import SignUpForm from './SignUpForm';
 
 const tooltip = (
   <Tooltip id="tooltip">3 New comments on your games</Tooltip>
@@ -10,11 +11,15 @@ class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false,
-      loggedIn: false
+      showLogin: false,
+      showSignUp: false,
+      loggedIn: sessionStorage.getItem('id')
     }
+
     this.close = this.close.bind(this)
-    this.open = this.open.bind(this)
+    this.openSignUp = this.openSignUp.bind(this)
+    this.openLogIn = this.openLogIn.bind(this)
+    this.handleLogin = this.handleLogin.bind(this)
   }
 
   handleLogin() {
@@ -22,11 +27,15 @@ class NavBar extends React.Component {
   }
 
   close() {
-    this.setState({ showModal: false });
+    this.setState({ showLogin: false, showSignUp: false});
   }
 
-  open() {
-    this.setState({ showModal: true });
+  openSignUp() {
+    this.setState({ showSignUp: true });
+  }
+
+  openLogIn() {
+    this.setState({ showLogin: true });
   }
 
   render() {
@@ -48,17 +57,26 @@ class NavBar extends React.Component {
             </OverlayTrigger>
           </Nav>}
           <Nav pullRight>
-            {!this.state.loggedIn && <NavItem eventKey={1} onClick={this.open}>Log In</NavItem>}
+            {!this.state.loggedIn && <NavItem eventKey={1} onClick={this.openLogIn}>Log In</NavItem>}
+            {!this.state.loggedIn && <NavItem eventKey={1} onClick={this.openSignUp}>Sign Up</NavItem>}
             {this.state.loggedIn && <NavItem eventKey={1} href="#">My Account</NavItem>}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-        <Modal show={this.state.showModal} onHide={this.close}>
+        <Modal show={this.state.showLogin} onHide={this.close}>
           <Modal.Header closeButton>
             <Modal.Title>Log In</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <LoginForm close={this.close}/>
+            <LoginForm login={this.handleLogin} close={this.close}/>
+          </Modal.Body>
+        </Modal>
+        <Modal show={this.state.showSignUp} onHide={this.close}>
+          <Modal.Header closeButton>
+            <Modal.Title>Sign Up</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <SignUpForm login={this.handleLogin} close={this.close}/>
           </Modal.Body>
         </Modal>
       </div>

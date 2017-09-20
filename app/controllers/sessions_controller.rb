@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def show
     respond_to do |format|
       format.json { current_user ? head(:ok) : head(:unauthorized) }
@@ -9,8 +11,8 @@ class SessionsController < ApplicationController
     user = User.where(email: params[:email]).first
 
     respond_to do |format|
-      if user && user.valid_password?(params[:password])
-        format.json { render json: user.as_json(only: [:id, :email]), status: :created }
+      if user.valid_password?(params[:password])
+        format.json { render json: user.as_json(only: [:id, :email, :authentication_token]), status: :created }
       else
         format.json { head(:unauthorized) }
       end
@@ -18,11 +20,10 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    current_user = nil
+    current_user.authentication_token = nil
 
     respond_to do |format|
       format.json { current_user.save ? head(:ok) : head(:unauthorized) }
     end
-
   end
 end

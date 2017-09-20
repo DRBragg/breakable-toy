@@ -1,4 +1,5 @@
 class VideosController < ApplicationController
+
   def index
     @videos = Video.all
     respond_to do |format|
@@ -7,7 +8,7 @@ class VideosController < ApplicationController
   end
 
   def new
-
+    @user = current_user
   end
 
   def create

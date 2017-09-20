@@ -1,12 +1,13 @@
 import React from 'react';
 import {FormGroup, ControlLabel, FormControl, HelpBlock, Button, Alert} from 'react-bootstrap';
 
-class LoginForm extends React.Component {
+class SignUpForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
       password: "",
+      passwordConfirmation: "",
       error: false
     }
     this.handleChange = this.handleChange.bind(this)
@@ -22,8 +23,8 @@ class LoginForm extends React.Component {
   handleSubmit(e){
     e.preventDefault()
     let header = ReactOnRails.authenticityHeaders({'Accept': 'application/json', 'Content-Type': 'application/json'});
-    let formPayload = {email: this.state.email, password: this.state.password}
-    fetch("/sessions", {
+    let formPayload = {email: this.state.email, password: this.state.password, password_confirmation: this.state.passwordConfirmation}
+    fetch("/users", {
       method: "POST",
       headers: header,
       credentials: 'same-origin',
@@ -33,27 +34,40 @@ class LoginForm extends React.Component {
         let user = response.json();
         return user
       } else {
-        console.log('wrong credentials');
+        console.log('didnt save');
         this.setState({error: true});
       }
     }).then(user => {
       console.log('user:', user);
-      sessionStorage.setItem('id', user.id);
-      sessionStorage.setItem('email', user.email);
-      this.clearForm();
+      // sessionStorage.setItem('id', user.id);
+      // sessionStorage.setItem('email', user.email);
+      // this.clearForm();
     })
   }
 
   clearForm(){
-    this.setState({email: '', password: ''})
+    this.setState({ email: '', password: '', passwordConfirmation: '' })
     this.props.login();
     this.props.close();
+  }
+
+  getValidationState(){
+    const length = this.state.password.length;
+    if (length > 6) return 'success';
+    else if (length > 0) return 'error';
+  }
+
+  getPasswordConfirmationValidationState(){
+    const password = this.state.passwordConfirmation;
+    if (password === "") return null;
+    else if (password === this.state.password) return 'success';
+    else if (password !== this.state.password) return 'error';
   }
 
   render() {
     let disabled;
 
-    if (this.state.email != '' && this.state.password != '') {
+    if (this.state.email != '' && this.state.password != '' && this.state.passwordConfirmation != '') {
       disabled = false
     } else {
       disabled = true
@@ -63,7 +77,7 @@ class LoginForm extends React.Component {
       <form>
       {this.state.error &&
       <Alert bsStyle="danger">
-        Wrong Email/Password!
+        Something went Wrong
       </Alert>}
         <FormGroup>
           <ControlLabel>Username</ControlLabel>
@@ -75,7 +89,7 @@ class LoginForm extends React.Component {
             onChange={this.handleChange}
           />
         </FormGroup>
-        <FormGroup>
+        <FormGroup validationState={this.getValidationState()}>
           <ControlLabel>Password</ControlLabel>
           <FormControl
             type="password"
@@ -84,13 +98,27 @@ class LoginForm extends React.Component {
             placeholder="Password"
             onChange={this.handleChange}
           />
+          <FormControl.Feedback />
+          <HelpBlock>Password must be greater than 6 characters</HelpBlock>
+        </FormGroup>
+        <FormGroup validationState={this.getPasswordConfirmationValidationState()}>
+          <ControlLabel>Password Confirmation</ControlLabel>
+          <FormControl
+            type="password"
+            name="passwordConfirmation"
+            value={this.state.passwordConfirmation}
+            placeholder="Password Confirmation"
+            onChange={this.handleChange}
+          />
+          <FormControl.Feedback />
+          <HelpBlock>Passwords must match</HelpBlock>
         </FormGroup>
         <Button type='submit' onClick = {this.handleSubmit} disabled={disabled}>
-          Sign In
+          Sign Up
         </Button>
       </form>
     );
   }
 }
 
-export default LoginForm;
+export default SignUpForm;
