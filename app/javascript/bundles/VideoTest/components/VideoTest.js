@@ -1,6 +1,7 @@
 import React from 'react';
 import Webcam from './Webcam';
 import CardView from './CardView';
+import newGame from './AppUtils';
 import RecordRTC from 'recordrtc';
 import { Grid, Row, Col, Button, ButtonToolbar, FormGroup, FormControl, InputGroup } from 'react-bootstrap';
 
@@ -17,12 +18,15 @@ class VideoTest extends React.Component {
       src: null,
       recording: false,
       upload: null,
-      video: null
+      video: null,
+      gameType: "",
+      currentCard: this.props.deck
     };
-
-    this.requestUserMedia = this.requestUserMedia.bind(this);
-    this.startRecord = this.startRecord.bind(this);
-    this.stopRecord = this.stopRecord.bind(this);
+    this.requestUserMedia = this.requestUserMedia.bind(this)
+    this.startRecord = this.startRecord.bind(this)
+    this.stopRecord = this.stopRecord.bind(this)
+    // this.handleChange = this.handleChange.bind(this)
+    this.getNewCard = this.getNewCard.bind(this)
   }
 
   //alert user on Mount if their browser does not support gUM
@@ -91,8 +95,16 @@ class VideoTest extends React.Component {
 
   //this method will fetch a new card when clicked
   getNewCard() {
-    window.alert("This will display the next card")
+    let currentDeck = this.state.deck
+    let nextCard = currentDeck.shift()
+    this.setState({ deck: currentDeck, currentCard: nextCard })
   }
+
+  // handleChange(e){
+  //   setGame = e.target.value;
+  //   setDeck = this.state.deck;
+  //   this.setState({ gameType:  })
+  // }
 
   render() {
     return(
@@ -107,8 +119,8 @@ class VideoTest extends React.Component {
                 <InputGroup.Addon>
                   Select the number of cards you want to play with
                 </InputGroup.Addon>
-                <FormControl componentClass="select" placeholder="select">
-                  <option value="select">select</option>
+                <FormControl componentClass="select" value={this.state.gameType} onChange={this.handleChange}>
+                  <option value=""> </option>
                   <option value="1">1 - Random card</option>
                   <option value="2.1">2 - 1 Opener card & 1 Closer card</option>
                   <option value="2.2">2 - 1 Opener card & 1 Question card</option>
@@ -123,7 +135,7 @@ class VideoTest extends React.Component {
         </Row>
         <Row>
           <Col xs={4} xsOffset={1} className="text-center">
-            <CardView/>
+            <CardView card={this.state.currentCard}/>
           </Col>
           <Col xs={6} xsOffset={1}>
             <Webcam src={this.state.src}/>

@@ -7,7 +7,15 @@ class VideosController < ApplicationController
   end
 
   def new
-
+    @deck = Card.first
+    # @deck[:openers] = Card.where(catagory: "Opener")
+    # @deck[:closers] = Card.where(catagory: "Closer")
+    # @deck[:questions] = Card.where(catagory: "Question")
+    # @deck[:personals] = Card.where(catagory: "Personal")
+    # @deck.to_json()
+    respond_to do |format|
+      format.html { render :new }
+    end
   end
 
   def create
