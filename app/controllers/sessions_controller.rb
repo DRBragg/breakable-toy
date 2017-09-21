@@ -18,7 +18,6 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    binding.pry
     current_user.authentication_token = nil
     respond_to do |format|
       format.json { current_user.save ? head(:ok) : head(:unauthorized) }
