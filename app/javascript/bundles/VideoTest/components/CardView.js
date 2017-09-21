@@ -3,8 +3,8 @@ import { Panel } from 'react-bootstrap';
 
 const CardView = (props) => {
   return (
-    <Panel header="Card Type" bsStyle="warning">
-      Card question/prompt
+    <Panel header={props.card.catagory} bsStyle="info">
+      {props.card.body}
     </Panel>
   )
 }

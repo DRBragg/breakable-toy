@@ -1,7 +1,16 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+Card.create(catagory: "Opener", body: "O1 - Placeholder for testing purposes, this will be real propmts later")
+Card.create(catagory: "Opener", body: "O2 - Placeholder for testing purposes, this will be real propmts later")
+Card.create(catagory: "Opener", body: "O3 - Placeholder for testing purposes, this will be real propmts later")
+Card.create(catagory: "Opener", body: "O4 - Placeholder for testing purposes, this will be real propmts later")
+Card.create(catagory: "Closer", body: "C1 - Placeholder for testing purposes, this will be real propmts later")
+Card.create(catagory: "Closer", body: "C2 - Placeholder for testing purposes, this will be real propmts later")
+Card.create(catagory: "Closer", body: "C3 - Placeholder for testing purposes, this will be real propmts later")
+Card.create(catagory: "Closer", body: "C4 - Placeholder for testing purposes, this will be real propmts later")
+Card.create(catagory: "Question", body: "Q1 - Placeholder for testing purposes, this will be real propmts later")
+Card.create(catagory: "Question", body: "Q2 - Placeholder for testing purposes, this will be real propmts later")
+Card.create(catagory: "Question", body: "Q3 - Placeholder for testing purposes, this will be real propmts later")
+Card.create(catagory: "Question", body: "Q4 - Placeholder for testing purposes, this will be real propmts later")
+Card.create(catagory: "Personal", body: "P1 - Placeholder for testing purposes, this will be real propmts later")
+Card.create(catagory: "Personal", body: "P2 - Placeholder for testing purposes, this will be real propmts later")
+Card.create(catagory: "Personal", body: "P3 - Placeholder for testing purposes, this will be real propmts later")
+Card.create(catagory: "Personal", body: "P4 - Placeholder for testing purposes, this will be real propmts later")
