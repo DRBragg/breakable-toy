@@ -68,7 +68,7 @@ class VideoTest extends React.Component {
     this.state.recordVideo.stopRecording(() => {
       let recordedBlob = this.state.recordVideo.getBlob();
       console.log('Blob', recordedBlob);
-      let header = ReactOnRails.authenticityHeaders({'Accept': 'application/json , */*'});
+      let header = ReactOnRails.authenticityHeaders({'Accept': 'application/json , */*', 'X-User-Email': sessionStorage.getItem('email'), 'X-User-token': sessionStorage.getItem('token')});
       fetch("/videos", {
         method: "POST",
         headers: header,
