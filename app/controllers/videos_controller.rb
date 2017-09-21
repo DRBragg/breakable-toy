@@ -1,7 +1,7 @@
 class VideosController < ApplicationController
 
   def index
-    @videos = Video.all
+    @games = Game.all
     respond_to do |format|
       format.html { render :index }
     end
@@ -21,14 +21,15 @@ class VideosController < ApplicationController
 
   def create
     vid = request.body
-    @video = Video.new
-    @video.vid = vid
+    @game = Game.new
+    @game.vid = vid
+    @game.user = current_user
 
     respond_to do |format|
-      if @video.save!
-        format.json { render json: @video }
+      if @game.save!
+        format.json { render json: @game }
       else
-        format.json { render json: @video.errors.full_messages.join(' , ') }
+        format.json { render json: @game.errors.full_messages.join(' , ') }
       end
     end
   end
