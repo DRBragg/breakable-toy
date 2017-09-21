@@ -14,6 +14,8 @@ gem 'inky-rb', require: 'inky'
 gem 'premailer-rails'
 gem 'webpacker', '~> 3.0'
 gem 'carrierwave', '~> 1.0'
+gem 'devise'
+gem 'simple_token_authentication', '~> 1.0'
 
 group :development do
   gem 'listen', '~> 3.0.5'

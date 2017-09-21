@@ -12,7 +12,6 @@ const hasGetUserMedia = !!(navigator.getUserMedia || navigator.webkitGetUserMedi
 class VideoTest extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       recordVideo: null,
       src: null,
@@ -56,7 +55,6 @@ class VideoTest extends React.Component {
 
   //the an RecordRTC instence to state and call it to start recording
   startRecord() {
-  console.log('recording started');
     this.captureUserMedia((stream) => {
       let options = { type: 'video' }
       this.setState({ recordVideo: RecordRTC(stream, options), recording: true });
@@ -79,7 +77,7 @@ class VideoTest extends React.Component {
       }).then(response => {
         console.log('response', response.json());
       })
-      this.setState({ upload: true, recording: false });
+      this.setState({ recording: false });
     });
   }
 
@@ -131,7 +129,7 @@ class VideoTest extends React.Component {
         </Row>
         <Row>
         <Col xs={4} xsOffset={1} className="text-center">
-          <Button onClick={this.getNewCard} disabled={this.state.recording}>Next Card</Button>
+          <Button onClick={this.getNewCard} disabled={!this.state.recording}>Next Card</Button>
         </Col>
           <Col xs={6} xsOffset={1} className="text-center">
             <ButtonToolbar>
