@@ -59,7 +59,7 @@ class NavBar extends React.Component {
           <Nav pullRight>
             {!this.state.loggedIn && <NavItem eventKey={1} onClick={this.openLogIn}>Log In</NavItem>}
             {!this.state.loggedIn && <NavItem eventKey={1} onClick={this.openSignUp}>Sign Up</NavItem>}
-            {this.state.loggedIn && <NavItem eventKey={1} href="#">My Account</NavItem>}
+            {this.state.loggedIn && <NavItem eventKey={1} href={'/sessions/'+sessionStorage.getItem('id');}>Signout</NavItem>}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

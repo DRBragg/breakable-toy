@@ -40,6 +40,7 @@ class LoginForm extends React.Component {
       console.log('user:', user);
       sessionStorage.setItem('id', user.id);
       sessionStorage.setItem('email', user.email);
+      sessionStorage.setItem('token', user.token);
       this.clearForm();
     })
   }
