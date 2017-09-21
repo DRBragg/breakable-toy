@@ -1,6 +1,4 @@
 class SessionsController < ApplicationController
-  skip_before_action :verify_authenticity_token
-
   def show
     respond_to do |format|
       format.json { current_user ? head(:ok) : head(:unauthorized) }
@@ -20,8 +18,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    binding.pry
     current_user.authentication_token = nil
-
     respond_to do |format|
       format.json { current_user.save ? head(:ok) : head(:unauthorized) }
     end

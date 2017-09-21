@@ -20,10 +20,27 @@ class NavBar extends React.Component {
     this.openSignUp = this.openSignUp.bind(this)
     this.openLogIn = this.openLogIn.bind(this)
     this.handleLogin = this.handleLogin.bind(this)
+    this.signOut = this.signOut.bind(this)
   }
 
   handleLogin() {
     this.setState({ loggedIn: true });
+  }
+
+  signOut() {
+    fetch('/sessions/'+sessionStorage.getItem('id'), {
+      method: 'DELETE',
+      headers: {
+        'X-User-Email': sessionStorage.getItem('email'),
+        'X-User-token': sessionStorage.getItem('token')
+      },
+      credentials: 'same-origin'
+    }).then(response => {
+      if (response.ok) {
+        this.setState({loggedIn: false});
+        sessionStorage.clear();
+      }
+    })
   }
 
   close() {
@@ -59,7 +76,7 @@ class NavBar extends React.Component {
           <Nav pullRight>
             {!this.state.loggedIn && <NavItem eventKey={1} onClick={this.openLogIn}>Log In</NavItem>}
             {!this.state.loggedIn && <NavItem eventKey={1} onClick={this.openSignUp}>Sign Up</NavItem>}
-            {this.state.loggedIn && <NavItem eventKey={1} href={'/sessions/'+sessionStorage.getItem('id');}>Signout</NavItem>}
+            {this.state.loggedIn && <NavItem eventKey={1} onClick={this.signOut}>Signout</NavItem>}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
