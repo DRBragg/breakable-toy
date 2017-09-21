@@ -23,6 +23,16 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+group :test do
+  gem "capybara-screenshot"
+  gem "chromedriver-helper"
+  gem "database_cleaner"
+  gem "generator_spec"
+  gem "rspec-retry"
+  gem "selenium-webdriver", "<3.0.0"
+end
+
+
 group :development, :test do
   gem 'capybara'
   gem 'factory_girl_rails'
@@ -31,6 +41,13 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'shoulda'
   gem 'valid_attribute'
+  gem 'dotenv-rails'
+  gem 'faker'
+  gem 'phantomjs', :require => 'phantomjs/poltergeist'
+  gem 'poltergeist'
+  gem 'email_spec'
+  gem 'mailcatcher'
+
 end
 
 group :production do
