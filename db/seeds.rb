@@ -1,3 +1,8 @@
+Card.destroy_all
+User.destroy_all
+
+User.create(email: "test@test.com", password: "password", password_confirmation: "password")
+
 Card.create(catagory: "Opener", body: "O1 - Placeholder for testing purposes, this will be real propmts later")
 Card.create(catagory: "Opener", body: "O2 - Placeholder for testing purposes, this will be real propmts later")
 Card.create(catagory: "Opener", body: "O3 - Placeholder for testing purposes, this will be real propmts later")
