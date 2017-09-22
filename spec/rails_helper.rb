@@ -100,9 +100,9 @@ RSpec.configure do |config|
       js_driver.render(path, full: true)
     end
 
-  when :selenium_chrome
+  when :selenium_chrome, :selenium
     DriverRegistration.register_selenium_chrome
-  when :selenium_firefox, :selenium
+  when :selenium_firefox
     DriverRegistration.register_selenium_firefox
     driver = :selenium_firefox
   end
@@ -113,6 +113,10 @@ RSpec.configure do |config|
   Capybara.register_server(Capybara.javascript_driver) do |app, port|
     require "rack/handler/puma"
     Rack::Handler::Puma.run(app, Port: port)
+  end
+
+  config.after do
+    Capybara.execute_script "sessionStorage.clear()"
   end
 
   # Capybara.default_max_wait_time = 15
