@@ -6,7 +6,8 @@ import NavBar from '../bundles/NavBar/NavBar';
 import App from '../bundles/AppBar/App';
 import AppIndexPage from '../bundles/AppIndexPage/AppIndexPage';
 import AppGamePage from '../bundles/VideoTest/AppGamePage';
+import AppShowPage from '../bundles/AppShowPage/AppShowPage';
 
 ReactOnRails.register({
-  VideoTest, IndexPage, NavBar, App, AppIndexPage, AppGamePage
+  VideoTest, IndexPage, NavBar, App, AppIndexPage, AppGamePage, AppShowPage
 });

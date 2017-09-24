@@ -3,6 +3,11 @@ import { Navbar, Nav, NavItem, Badge, Tooltip, OverlayTrigger, Modal } from 'rea
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
+import {List, ListItem} from 'material-ui/List';
+import ActionAccountCircle from 'material-ui/svg-icons/action/account-circle';
+import AvAddToQueue from 'material-ui/svg-icons/av/add-to-queue';
+import DeviceDvr from 'material-ui/svg-icons/device/dvr';
+import ActionHome from 'material-ui/svg-icons/action/home';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
 import LoginForm from './LoginForm';
@@ -11,6 +16,10 @@ import SignUpForm from './SignUpForm';
 const tooltip = (
   <Tooltip id="tooltip">3 New comments on your games</Tooltip>
 );
+
+const MenuButtons = (props) => {
+
+}
 
 class Appbar extends React.Component {
   constructor(props) {
@@ -50,15 +59,15 @@ class Appbar extends React.Component {
   }
 
   close() {
-    this.setState({ showLogin: false, showSignUp: false});
+    this.setState({ showLogin: false, showSignUp: false });
   }
 
   openSignUp() {
-    this.setState({ showSignUp: true });
+    this.setState({ showSignUp: true, showLogin: false });
   }
 
   openLogIn() {
-    this.setState({ showLogin: true });
+    this.setState({ showLogin: true, showSignUp: false });
   }
 
   render() {
@@ -66,16 +75,25 @@ class Appbar extends React.Component {
       <div>
       <AppBar
         title="Interview Game"
-        iconElementRight={this.state.loggedIn ? <FlatButton onClick={this.signOut} label="Sign Out" /> : <FlatButton onClick={this.openLogIn} label="Log In" />}
-        onLeftIconButtonTouchTap={(open) => this.setState({open: true})}
+        iconElementRight= { this.state.loggedIn ? <FlatButton onClick={this.signOut} label="Sign Out" /> : <FlatButton onClick={this.openLogIn} label="Log In/Sign Up" /> }
+        onLeftIconButtonTouchTap={() => this.setState({open: true})}
+        showMenuIconButton = { this.state.loggedIn ? true : false }
       />
       <Drawer
           docked={false}
           open={this.state.open}
-          onRequestChange={(open) => this.setState({open})}
+          onRequestChange={() => this.setState({open: false})}
         >
-          <MenuItem onClick={this.handleClose}>New Game</MenuItem>
-          <MenuItem onClick={this.handleClose}>My Games</MenuItem>
+        <AppBar
+          title="Menu"
+          onLeftIconButtonTouchTap={() => this.setState({open: false})}
+        />
+        <List>
+          <ListItem primaryText="Home" leftIcon={<ActionHome />} href="/"/>
+          <ListItem primaryText="New Game" leftIcon={<AvAddToQueue />} href="/videos/new" />
+          <ListItem primaryText="My Games" leftIcon={<DeviceDvr />} />
+          <ListItem primaryText="My Account" leftIcon={<ActionAccountCircle />} />
+        </List>
         </Drawer>
         <Modal show={this.state.showLogin} onHide={this.close}>
           <Modal.Header closeButton>
@@ -84,6 +102,9 @@ class Appbar extends React.Component {
           <Modal.Body>
             <LoginForm login={this.handleLogin} close={this.close}/>
           </Modal.Body>
+          <Modal.Footer>
+            No Account? <FlatButton onClick={this.openSignUp} label="Sign Up" />
+          </Modal.Footer>
         </Modal>
         <Modal show={this.state.showSignUp} onHide={this.close}>
           <Modal.Header closeButton>
@@ -92,10 +113,14 @@ class Appbar extends React.Component {
           <Modal.Body>
             <SignUpForm login={this.handleLogin} close={this.close}/>
           </Modal.Body>
+          <Modal.Footer>
+            Already have an Account? <FlatButton onClick={this.openLogIn} label="Log In" />
+          </Modal.Footer>
         </Modal>
         </div>
     )
   }
 }
+
 
 export default Appbar;
