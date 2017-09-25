@@ -3,8 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :videos, only: [:index, :new, :create]
+  resources :videos, only: [:index, :show, :new, :create]
   resources :sessions, only: [:show, :create, :destroy]
   resources :users, only: [:create]
-
 end
