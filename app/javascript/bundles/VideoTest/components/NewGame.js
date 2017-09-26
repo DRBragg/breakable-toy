@@ -66,17 +66,20 @@ class VideoTest extends React.Component {
     console.log('recording stopped')
     this.state.recordVideo.stopRecording(() => {
       let recordedBlob = this.state.recordVideo.getBlob();
-      console.log('Blob', recordedBlob);
       let header = ReactOnRails.authenticityHeaders({'Accept': 'application/json , */*', 'X-User-Email': sessionStorage.getItem('email'), 'X-User-token': sessionStorage.getItem('token')});
-      fetch("/videos", {
+      fetch(`/users/${sessionStorage.getItem('id')}/videos`, {
         method: "POST",
         headers: header,
         credentials: 'same-origin',
         body: recordedBlob
       }).then(response => {
-        console.log('response', response.json());
-      })
-      this.setState({ recording: false, saved: true });
+        if (response.ok) {
+          let savedVideo = response.json();
+          return savedVideo
+        }
+      }).then(savedVideo => {
+        this.setState({ recording: false, saved: savedVideo.id });
+      });
     });
   }
 
@@ -102,8 +105,8 @@ class VideoTest extends React.Component {
         <Row>
           <Col xs={6} xsOffset={3} className="text-center">
             {!this.state.recording && !this.state.saved && <Button bsStyle="success" onClick={this.startRecord}>Start Game</Button>}
-            {this.state.recording && <DeckStepper finish={this.stopRecord}/> }
-            {this.state.saved && <Button bsStyle="info" href="/">View Game</Button>}
+            {this.state.recording && <DeckStepper deck={this.props.deck} finish={this.stopRecord}/> }
+            {this.state.saved && <Button bsStyle="info" href={"/videos/"+this.state.saved}>View Game</Button>}
           </Col>
         </Row>
       </Grid>
