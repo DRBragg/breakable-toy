@@ -21,9 +21,13 @@ class GameCard extends React.Component {
     this.setState({expanded: false});
   };
 
+  handleExpandChange = (expanded) => {
+    this.setState({expanded: expanded});
+  };
+
   render() {
     return(
-      <Col md={12} className="index-card">
+      <Col xs={8} xsOffset={2} className="index-card">
         <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange}>
           <CardHeader
             title="Video Title"
@@ -33,19 +37,12 @@ class GameCard extends React.Component {
           />
           <CardMedia
             expandable={true}
-            overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
+            overlay={<CardTitle title="Cards in Deck:" subtitle="Card 1, Card 2, Card 3, Card 4" />}
           >
-            <img src="images/nature-600-337.jpg" alt="" />
+            <video src={this.props.game.vid.url} alt=""/>
           </CardMedia>
-          <CardTitle title="Card title" subtitle="Card subtitle" expandable={true} />
-          <CardText expandable={true}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-            Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-            Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-          </CardText>
           <CardActions>
-          <FlatButton label="Go to" onClick={this.handleExpand} />
+          <FlatButton label="Go to" href={"http://localhost:3000/videos/"+this.props.game.id} />
           <FlatButton label="Delete" onClick={this.handleReduce} />
           </CardActions>
         </Card>

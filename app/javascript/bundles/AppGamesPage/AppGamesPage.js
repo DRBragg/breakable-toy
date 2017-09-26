@@ -2,9 +2,9 @@ import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import GamesPage from './components/GamesPage';
 
-const AppGamesPage = () => (
+const AppGamesPage = (props) => (
   <MuiThemeProvider>
-    <GamesPage />
+    <GamesPage games={props.games}/>
   </MuiThemeProvider>
 );
 

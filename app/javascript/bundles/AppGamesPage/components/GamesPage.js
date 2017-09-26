@@ -14,7 +14,7 @@ class GamePage extends React.Component {
     return(
       <Grid>
         <Row>
-          <CardsGroup videos={['A', 'B', 'C', 'D', 'E', 'F', 'G']} />
+          <CardsGroup games={this.props.games} />
         </Row>
       </Grid>
     )
