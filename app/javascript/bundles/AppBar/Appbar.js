@@ -91,7 +91,7 @@ class Appbar extends React.Component {
         <List>
           <ListItem primaryText="Home" leftIcon={<ActionHome />} href="/"/>
           <ListItem primaryText="New Game" leftIcon={<AvAddToQueue />} href="/videos/new" />
-          <ListItem primaryText="My Games" leftIcon={<DeviceDvr />} />
+          <ListItem primaryText="My Games" leftIcon={<DeviceDvr />} href={"/users/"+sessionStorage.getItem('id')}/>
           <ListItem primaryText="My Account" leftIcon={<ActionAccountCircle />} />
         </List>
         </Drawer>

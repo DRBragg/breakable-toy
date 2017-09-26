@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  def show
+    @games = Game.where(user: params[:id])
+  end
+
   def create
     user = User.new(user_params)
 
