@@ -5,7 +5,7 @@ feature "Users can comment on games", js: true do
 
   scenario "User can comment on a game" do
     visit root_path
-    click_on "Log In"
+    click_on "Log In/Sign Up"
 
     fill_in 'Email', with: user.email
     fill_in 'password', with: user.password

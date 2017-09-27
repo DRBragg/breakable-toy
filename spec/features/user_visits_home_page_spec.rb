@@ -6,13 +6,13 @@ feature "User visits home page", js: true do
   scenario "Visitor (non-logged in user) sees links to sign up or sign in" do
     visit root_path
 
-    expect(page).to have_link("Log In")
-    expect(page).to have_link("Sign Up")
+    expect(page).to have_link("Log In/Sign Up")
     expect(page).to_not have_link("Sign Out")
   end
 
   scenario "Visitor (non-logged in user) sees sign up form when clicking on sign up" do
     visit root_path
+    click_on "Log In/Sign Up"
     click_on "Sign Up"
 
     expect(page).to have_content("Email")
@@ -23,7 +23,7 @@ feature "User visits home page", js: true do
 
   scenario "Visitor (non-logged in user) sees log in form when clicking on log in" do
     visit root_path
-    click_on "Log In"
+    click_on "Log In/Sign Up"
 
     expect(page).to have_content("Email")
     expect(page).to have_content("Password")
@@ -32,7 +32,7 @@ feature "User visits home page", js: true do
 
   scenario "Logged in user sees link to sign out" do
     visit root_path
-    click_on "Log In"
+    click_on "Log In/Sign Up"
 
     fill_in 'Email', with: user.email
     fill_in 'password', with: user.password

@@ -5,25 +5,26 @@ feature "User visits new game page", js: true do
 
   scenario "User can see link for new game" do
     visit root_path
-    click_on "Log In"
+    click_on "Log In/Sign Up"
 
     fill_in 'Email', with: user.email
     fill_in 'password', with: user.password
     click_button "Log In"
 
+    click_on "Menu"
     expect(page).to have_link("New Game")
   end
 
   scenario "Visitor (non-logged in user) does not see link for new game" do
     visit root_path
 
-    expect(page).to have_link("Log In")
-    expect(page).to_not have_link("New Game")
+    expect(page).to have_link("Log In/Sign Up")
+    expect(page).to_not have_link("Menu")
   end
 
   scenario "User can go to new game page" do
     visit root_path
-    click_on "Log In"
+    click_on "Log In/Sign Up"
 
     fill_in 'Email', with: user.email
     fill_in 'password', with: user.password

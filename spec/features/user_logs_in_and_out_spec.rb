@@ -5,7 +5,7 @@ feature "User can log in and out", js: true do
 
   scenario "User can log in" do
     visit root_path
-    click_on "Log In"
+    click_on "Log In/Sign Up"
 
     fill_in 'Email', with: user.email
     fill_in 'password', with: user.password
@@ -19,7 +19,7 @@ feature "User can log in and out", js: true do
 
   scenario "User cannot log in with bad info" do
     visit root_path
-    click_on "Log In"
+    click_on "Log In/Sign Up"
 
     fill_in 'Email', with: user.email
     fill_in 'password', with: "WrongPassword"
@@ -32,7 +32,7 @@ feature "User can log in and out", js: true do
 
   scenario "User can sign out" do
     visit root_path
-    click_on "Log In"
+    click_on "Log In/Sign Up"
 
     fill_in 'Email', with: user.email
     fill_in 'password', with: user.password
