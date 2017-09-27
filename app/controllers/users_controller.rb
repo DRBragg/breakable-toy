@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   def show
     @games = Game.where(user: params[:id])
+    @display = []
+    
+    @games.each do |game|
+      @display << {id: game.id, video: game.vid, recordedDate: game.created_at, cards: game.cards}
+    end
   end
 
   def create

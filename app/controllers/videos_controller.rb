@@ -1,7 +1,12 @@
 class VideosController < ApplicationController
 
   def index
+    @display = []
     @games = Game.all
+    @games.each do |game|
+      @display << {id: game.id, user: game.user, video: game.vid, recordedDate: game.created_at, cards: game.cards}
+    end
+
     respond_to do |format|
       format.html { render :index }
     end
@@ -9,6 +14,10 @@ class VideosController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+    @user = @game.user.email
+    @deck = @game.cards
+    @comments = @game.comments
+
     respond_to do |format|
       format.html { render :show }
     end

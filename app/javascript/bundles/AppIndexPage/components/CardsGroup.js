@@ -4,9 +4,9 @@ import GameCard from './GameCard';
 
 
 const CardsGroup = (props) => {
-  let cards = props.videos.map(vid => {
+  let cards = props.games.map(game => {
     return(
-      <GameCard key={vid} user={vid} />
+      <GameCard key={game.id} game={game} video={game.video} user={game.user} />
     )
   })
 

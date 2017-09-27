@@ -51,10 +51,8 @@ class Appbar extends React.Component {
       },
       credentials: 'same-origin'
     }).then(response => {
-      if (response.ok) {
-        sessionStorage.clear();
-        this.setState({loggedIn: false});
-      }
+      sessionStorage.clear();
+      this.setState({loggedIn: false});
     })
   }
 

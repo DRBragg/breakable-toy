@@ -2,9 +2,9 @@ import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import IndexPage from './components/IndexPage';
 
-const AppIndexPage = () => (
+const AppIndexPage = (props) => (
   <MuiThemeProvider>
-    <IndexPage />
+    <IndexPage games={props.games}/>
   </MuiThemeProvider>
 );
 

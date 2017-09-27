@@ -21,8 +21,8 @@ class CommentForm extends React.Component {
   handleSubmit(e){
     e.preventDefault()
     let header = ReactOnRails.authenticityHeaders({'Accept': 'application/json', 'Content-Type': 'application/json'});
-    let formPayload = {body: this.state.body}
-    fetch("/comments", {
+    let formPayload = {user_id: sessionStorage.getItem('id'), game_id: this.props.gameId, body: this.state.body}
+    fetch(`${window.location.pathname}/comments`, {
       method: "POST",
       headers: header,
       credentials: 'same-origin',

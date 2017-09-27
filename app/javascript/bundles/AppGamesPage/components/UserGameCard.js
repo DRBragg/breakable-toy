@@ -31,15 +31,19 @@ class GameCard extends React.Component {
         <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange}>
           <CardHeader
             title="Video Title"
-            subtitle="Recorded on: 9/25/2017"
+            subtitle={"Recorded on: "+this.props.game.recordedDate}
             actAsExpander={true}
             showExpandableButton={true}
           />
           <CardMedia
             expandable={true}
-            overlay={<CardTitle title="Cards in Deck:" subtitle="Card 1, Card 2, Card 3, Card 4" />}
+            overlay={<CardTitle title="Cards in Deck:" subtitle={
+              this.props.game.cards[0].catagory+": "+this.props.game.cards[0].body+", "
+              +this.props.game.cards[1].catagory+": "+this.props.game.cards[1].body+", "
+              +this.props.game.cards[2].catagory+": "+this.props.game.cards[2].body+", "
+              +this.props.game.cards[3].catagory+": "+this.props.game.cards[3].body} />}
           >
-            <video src={this.props.game.vid.url} alt=""/>
+            <video src={this.props.game.video.url} alt=""/>
           </CardMedia>
           <CardActions>
           <FlatButton label="Go to" href={"http://localhost:3000/videos/"+this.props.game.id} />
