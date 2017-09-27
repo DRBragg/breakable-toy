@@ -12,19 +12,34 @@ class UserGameCard extends React.Component {
     super(props);
     this.state = {
       game: this.props.game,
-      comments: this.props.comments
+      comments: this.props.comments,
+      showCommentForm: false
     }
+    this.showForm = this.showForm.bind(this)
+    this.handleNewComment =this.handleNewComment.bind(this)
+  }
+
+  showForm(){
+    this.setState({showCommentForm: !this.state.showCommentForm})
+  }
+
+  handleNewComment(newComment) {
+    let comments = this.state.comments
+    let updatedComments = comments.concat([newComment])
+    this.setState({comments: updatedComments})
+    this.showForm()
   }
 
   render() {
-    console.log('current props', this.props);
+
     return(
       <Grid>
         <Row>
           <Col xs={8} xsOffset={2}>
+            <br/>
             <Card>
               <CardHeader
-                title={this.props.user}
+                title={((this.props.user).split('@')[0])}
                 subtitle="Industry"
                 avatar= {<Avatar>U</Avatar>}
               />
@@ -44,10 +59,10 @@ class UserGameCard extends React.Component {
                   +this.props.deck[3].catagory+": "+this.props.deck[3].body}
               </CardText>
               <CardText>
-                <CommentForm gameId={this.props.game.id} />
+                {this.state.showCommentForm && <CommentForm gameId={this.props.game.id} submit={this.handleNewComment} />}
               </CardText>
               <CardActions>
-                <FlatButton label="Comment on this game" primary={true} fullWidth={true}/>
+                <FlatButton label="Comment on this game" primary={true} fullWidth={true} onClick={this.showForm} />
               </CardActions>
             </Card>
           </Col>

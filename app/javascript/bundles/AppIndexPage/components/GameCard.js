@@ -10,14 +10,14 @@ const GameCard = (props) => {
     <Col md={3} className="index-card">
     <Card>
       <CardHeader
-        title={props.user.email}
+        title={((props.user.email).split('@')[0])}
         subtitle="Industry"
         avatar= {<Avatar>A</Avatar>}
       />
       <CardMedia>
         <video src={props.video.url} alt="" />
       </CardMedia>
-      <CardTitle title={props.user.email+"'s Game"} subtitle="Date Recorded: 09/25/2017" />
+      <CardTitle title={((props.user.email).split('@')[0])+"'s Game"} subtitle={"Date Recorded: "+props.game.recordedDate} />
       <CardText>
         Cards in deck: {
           props.game.cards[0].catagory+": "+props.game.cards[0].body+", "

@@ -4,7 +4,7 @@ class VideosController < ApplicationController
     @display = []
     @games = Game.all
     @games.each do |game|
-      @display << {id: game.id, user: game.user, video: game.vid, recordedDate: game.created_at, cards: game.cards}
+      @display << {id: game.id, user: game.user, video: game.vid, recordedDate: game.created_at.strftime("%m/%d/%Y"), cards: game.cards}
     end
 
     respond_to do |format|
@@ -25,10 +25,10 @@ class VideosController < ApplicationController
 
   def new
     @game = Game.create(user: User.find(params[:user_id]))
-    Deck.create(game: @game, card: Card.first)
-    Deck.create(game: @game, card: Card.find(9))
-    Deck.create(game: @game, card: Card.find(13))
-    Deck.create(game: @game, card: Card.find(5))
+    Deck.create(game: @game, card: Card.find(rand(1..4)))
+    Deck.create(game: @game, card: Card.find(rand(5..8)))
+    Deck.create(game: @game, card: Card.find(rand(9..12)))
+    Deck.create(game: @game, card: Card.find(rand(13..16)))
 
     @deck = @game.cards
 

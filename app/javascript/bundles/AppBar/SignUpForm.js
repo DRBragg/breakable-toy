@@ -23,7 +23,7 @@ class SignUpForm extends React.Component {
   handleSubmit(e){
     e.preventDefault()
     let header = ReactOnRails.authenticityHeaders({'Accept': 'application/json', 'Content-Type': 'application/json'});
-    let formPayload = {email: this.state.email, password: this.state.password, password_confirmation: this.state.passwordConfirmation}
+    let formPayload = {user:{email: this.state.email, password: this.state.password, password_confirmation: this.state.passwordConfirmation}}
     fetch("/users", {
       method: "POST",
       headers: header,
@@ -39,9 +39,10 @@ class SignUpForm extends React.Component {
       }
     }).then(user => {
       console.log('user:', user);
-      // sessionStorage.setItem('id', user.id);
-      // sessionStorage.setItem('email', user.email);
-      // this.clearForm();
+      sessionStorage.setItem('id', user.id);
+      sessionStorage.setItem('email', user.email);
+      sessionStorage.setItem('token', user.authentication_token);
+      this.clearForm();
     })
   }
 

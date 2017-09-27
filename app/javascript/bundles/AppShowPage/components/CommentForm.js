@@ -29,11 +29,15 @@ class CommentForm extends React.Component {
       body: JSON.stringify(formPayload)
     }).then(response => {
       if (response.ok) {
-        console.log('Handle new comment');
+        let newComment = response.json()
+        return newComment
       } else {
         console.log('wrong credentials');
       }
-    })
+    }).then(newComment => {
+      this.clearForm()
+      this.props.submit(newComment)
+    });
   }
 
   clearForm(){

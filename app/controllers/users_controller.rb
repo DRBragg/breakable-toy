@@ -2,9 +2,9 @@ class UsersController < ApplicationController
   def show
     @games = Game.where(user: params[:id])
     @display = []
-    
+
     @games.each do |game|
-      @display << {id: game.id, video: game.vid, recordedDate: game.created_at, cards: game.cards}
+      @display << {id: game.id, video: game.vid, recordedDate: game.created_at.strftime("%m/%d/%Y"), cards: game.cards}
     end
   end
 
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if user.save
-        format.json { render json: user.as_json(only: [:id, :email]), status: :created }
+        format.json { render json: user.as_json(only: [:id, :email, :authentication_token]), status: :created }
       else
         format.json { head(:unauthorized) }
       end
