@@ -67,7 +67,7 @@ class LoginForm extends React.Component {
         Wrong Email/Password!
       </Alert>}
         <FormGroup>
-          <ControlLabel>Username</ControlLabel>
+          <ControlLabel>Email</ControlLabel>
           <FormControl
             type="text"
             name="email"
@@ -87,7 +87,7 @@ class LoginForm extends React.Component {
           />
         </FormGroup>
         <Button type='submit' onClick = {this.handleSubmit} disabled={disabled}>
-          Sign In
+          Log In
         </Button>
       </form>
     );

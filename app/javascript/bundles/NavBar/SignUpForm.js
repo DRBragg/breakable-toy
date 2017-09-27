@@ -80,7 +80,7 @@ class SignUpForm extends React.Component {
         Something went Wrong
       </Alert>}
         <FormGroup>
-          <ControlLabel>Username</ControlLabel>
+          <ControlLabel>Email</ControlLabel>
           <FormControl
             type="text"
             name="email"
