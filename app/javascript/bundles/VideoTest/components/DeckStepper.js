@@ -29,28 +29,28 @@ class DeckStepper extends React.Component {
       case 0:
         return (
           <p>
-            {'Opener Card body will render here.'}
+            {this.props.deck[0].body}
           </p>
         );
 
       case 1:
         return (
           <p>
-            {'Then Question Card body will render here.'}
+            {this.props.deck[1].body}
           </p>
         );
 
       case 2:
         return (
           <p>
-            {'Next, the Personal Question Card body will render here'}
+            {this.props.deck[2].body}
           </p>
         );
 
       case 3:
         return (
           <p>
-            {'Finally, the Closer Question Card body will render here'}
+            {this.props.deck[3].body}
           </p>
         );
     }

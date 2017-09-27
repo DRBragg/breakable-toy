@@ -15,12 +15,14 @@ class VideosController < ApplicationController
   end
 
   def new
-    @deck = []
-    # @deck[:openers] = Card.where(catagory: "Opener")
-    # @deck[:closers] = Card.where(catagory: "Closer")
-    # @deck[:questions] = Card.where(catagory: "Question")
-    # @deck[:personals] = Card.where(catagory: "Personal")
-    # @deck.to_json()
+    @game = Game.create(user: User.find(params[:user_id]))
+    Deck.create(game: @game, card: Card.first)
+    Deck.create(game: @game, card: Card.find(9))
+    Deck.create(game: @game, card: Card.find(13))
+    Deck.create(game: @game, card: Card.find(5))
+
+    @deck = @game.cards
+
     respond_to do |format|
       format.html { render :new }
     end
@@ -28,9 +30,8 @@ class VideosController < ApplicationController
 
   def create
     vid = request.body
-    @game = Game.new
+    @game = Game.where(user: User.find(params[:user_id])).last
     @game.vid = vid
-    @game.user = current_user
 
     respond_to do |format|
       if @game.save!
