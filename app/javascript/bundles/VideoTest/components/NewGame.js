@@ -100,6 +100,7 @@ class VideoTest extends React.Component {
         <Row>
           <Col xs={6} xsOffset={3}>
             <Webcam src={this.state.src}/>
+            <br/>
           </Col>
         </Row>
         <Row>
