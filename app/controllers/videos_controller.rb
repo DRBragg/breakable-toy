@@ -7,8 +7,15 @@ class VideosController < ApplicationController
     end
   end
 
+  def show
+    @game = Game.find(params[:id])
+    respond_to do |format|
+      format.html { render :show }
+    end
+  end
+
   def new
-    @deck = Card.first
+    @deck = []
     # @deck[:openers] = Card.where(catagory: "Opener")
     # @deck[:closers] = Card.where(catagory: "Closer")
     # @deck[:questions] = Card.where(catagory: "Question")
