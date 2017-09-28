@@ -54,10 +54,13 @@ class VideosController < ApplicationController
 
   def destroy
     @game = Game.find(params[:id])
-    @game.destroy
 
     respond_to do |format|
-      format.json { head(:ok) }
+      if @game.destroy
+        format.json { head(:ok) }
+      else
+        format.json { head(:unauthorized) }
+      end
     end
   end
 end
