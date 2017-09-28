@@ -10,9 +10,9 @@ const GameCard = (props) => {
     <Col md={3} className="index-card">
     <Card>
       <CardHeader
-        title={((props.user.email).split('@')[0])}
+        title={props.user.username}
         subtitle="Industry"
-        avatar= {<Avatar>A</Avatar>}
+        avatar= {<Avatar>{props.user.username.charAt(0)}</Avatar>}
       />
       <CardMedia>
         <video src={props.video.url} alt="" />

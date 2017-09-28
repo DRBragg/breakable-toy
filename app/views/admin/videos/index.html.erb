@@ -1,0 +1,23 @@
+
+  <h1>Admin Panel</h1>
+
+  <ul>
+    <% @games.each do |game| %>
+      <li>
+        <%= game.user.username %>'s game
+        <ul>
+          <li>
+            Recorded on: <%= game.created_at.strftime("%m/%d/%Y") %>
+          </li>
+          <li>
+            <video controls>
+              <source src="<%= game.vid.url %>" type="video/mp4"/>
+            </video>
+          </li>
+          <li>
+            <%= button_to "Delete", user_video_path(game.user.id, game.id), data: { confirm: "Are you sure?" }, method: :delete %>
+          </li>
+        </ul>
+      </li>
+    <% end %>
+  </ul>

@@ -6,6 +6,7 @@ class SignUpForm extends React.Component {
     super(props);
     this.state = {
       email: "",
+      username: "",
       password: "",
       passwordConfirmation: "",
       error: false
@@ -23,7 +24,7 @@ class SignUpForm extends React.Component {
   handleSubmit(e){
     e.preventDefault()
     let header = ReactOnRails.authenticityHeaders({'Accept': 'application/json', 'Content-Type': 'application/json'});
-    let formPayload = {user:{email: this.state.email, password: this.state.password, password_confirmation: this.state.passwordConfirmation}}
+    let formPayload = {user:{email: this.state.email, password: this.state.password, password_confirmation: this.state.passwordConfirmation, username: this.state.username}}
     fetch("/users", {
       method: "POST",
       headers: header,
@@ -34,21 +35,19 @@ class SignUpForm extends React.Component {
         let user = response.json();
         return user
       } else {
-        console.log('didnt save');
         this.setState({error: true});
       }
     }).then(user => {
-      console.log('user:', user);
       sessionStorage.setItem('id', user.id);
       sessionStorage.setItem('email', user.email);
       sessionStorage.setItem('token', user.authentication_token);
-      this.clearForm();
+      this.clearForm(user.admin);
     })
   }
 
-  clearForm(){
-    this.setState({ email: '', password: '', passwordConfirmation: '' })
-    this.props.login();
+  clearForm(admin){
+    this.setState({ email: '', username: '', password: '', passwordConfirmation: '' })
+    this.props.login(admin);
     this.props.close();
   }
 
@@ -87,6 +86,16 @@ class SignUpForm extends React.Component {
             name="email"
             value={this.state.email}
             placeholder="Email"
+            onChange={this.handleChange}
+          />
+        </FormGroup>
+        <FormGroup>
+          <ControlLabel>Username</ControlLabel>
+          <FormControl
+            type="text"
+            name="username"
+            value={this.state.username}
+            placeholder="Username"
             onChange={this.handleChange}
           />
         </FormGroup>

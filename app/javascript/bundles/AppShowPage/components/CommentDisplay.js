@@ -6,10 +6,10 @@ const CommentDisplay = (props) => {
   return (
     <Media>
       <Media.Left>
-        <Avatar>U</Avatar>
+        <Avatar>{props.comment.user.username.charAt(0)}</Avatar>
       </Media.Left>
       <Media.Body>
-        <Media.Heading>{((props.comment.user.email).split('@')[0])}</Media.Heading>
+        <Media.Heading>{props.comment.user.username}</Media.Heading>
         <p>{props.comment.body}</p>
       </Media.Body>
     </Media>

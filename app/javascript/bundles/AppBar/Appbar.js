@@ -10,6 +10,8 @@ import DeviceDvr from 'material-ui/svg-icons/device/dvr';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
+import Divider from 'material-ui/Divider';
+import Subheader from 'material-ui/Subheader';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 
@@ -28,6 +30,7 @@ class Appbar extends React.Component {
       showLogin: false,
       showSignUp: false,
       loggedIn: sessionStorage.getItem('id'),
+      isAdmin: false,
       open: false
     }
 
@@ -38,8 +41,9 @@ class Appbar extends React.Component {
     this.signOut = this.signOut.bind(this)
   }
 
-  handleLogin() {
-    this.setState({ loggedIn: true });
+  handleLogin(admin) {
+    console.log('handleLogin @ Appbar', admin);
+    this.setState({ loggedIn: true, isAdmin: admin });
   }
 
   signOut() {
@@ -52,7 +56,7 @@ class Appbar extends React.Component {
       credentials: 'same-origin'
     }).then(response => {
       sessionStorage.clear();
-      this.setState({loggedIn: false});
+      this.setState({loggedIn: false, isAdmin: false});
     })
   }
 
@@ -69,6 +73,7 @@ class Appbar extends React.Component {
   }
 
   render() {
+    console.log('current state', this.state);
     return(
       <div>
       <AppBar
@@ -92,6 +97,11 @@ class Appbar extends React.Component {
           <ListItem primaryText="My Games" leftIcon={<DeviceDvr />} href={"/users/"+sessionStorage.getItem('id')}/>
           <ListItem primaryText="My Account" leftIcon={<ActionAccountCircle />} />
         </List>
+        <Divider />
+        {this.state.isAdmin && <List>
+          <Subheader>Admin Links</Subheader>
+          <ListItem primaryText="All Games" leftIcon={<ActionHome />} href="/admin/videos/index"/>
+        </List>}
         </Drawer>
         <Modal show={this.state.showLogin} onHide={this.close}>
           <Modal.Header closeButton>

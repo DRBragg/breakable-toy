@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if user.save
-        format.json { render json: user.as_json(only: [:id, :email, :authentication_token]), status: :created }
+        format.json { render json: user.as_json(only: [:id, :email, :authentication_token, :admin]), status: :created }
       else
         format.json { head(:unauthorized) }
       end
@@ -23,6 +23,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :avatar)
+    params.require(:user).permit(:email, :password, :password_confirmation, :avatar, :admin, :username)
   end
 end

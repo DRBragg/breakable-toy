@@ -30,7 +30,6 @@ class UserGameCard extends React.Component {
   }
 
   render() {
-
     return(
       <Grid>
         <Row>
@@ -38,9 +37,9 @@ class UserGameCard extends React.Component {
             <br/>
             <Card>
               <CardHeader
-                title={((this.props.user).split('@')[0])}
+                title={this.props.user}
                 subtitle="Industry"
-                avatar= {<Avatar>U</Avatar>}
+                avatar= {<Avatar>{this.props.user.charAt(0)}</Avatar>}
               />
               <CardMedia>
                 <div className="embed-responsive embed-responsive-4by3">

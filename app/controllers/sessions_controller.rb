@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
     respond_to do |format|
       if user.valid_password?(params[:password])
-        format.json { render json: user.as_json(only: [:id, :email, :authentication_token]), status: :created }
+        format.json { render json: user.as_json(only: [:id, :email, :authentication_token, :admin]), status: :created }
       else
         format.json { head(:unauthorized) }
       end

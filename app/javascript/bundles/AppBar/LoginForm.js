@@ -41,13 +41,14 @@ class LoginForm extends React.Component {
       sessionStorage.setItem('id', user.id);
       sessionStorage.setItem('email', user.email);
       sessionStorage.setItem('token', user.authentication_token);
-      this.clearForm();
+      this.clearForm(user.admin);
     })
   }
 
-  clearForm(){
+  clearForm(admin){
+    console.log('clearForm @ LoginForm', admin);
     this.setState({email: '', password: ''})
-    this.props.login();
+    this.props.login(admin);
     this.props.close();
   }
 

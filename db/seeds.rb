@@ -1,4 +1,7 @@
 Card.destroy_all
+User.destroy_all
+Game.destroy_all
+Deck.destroy_all
 
 Card.create(catagory: "Opener", body: "Express interest and gratitue to your interviewers.")
 Card.create(catagory: "Opener", body: "Comment on the weather in your introduction.")
@@ -17,7 +20,7 @@ Card.create(catagory: "Closer", body: "While closing, ask your interviewers what
 Card.create(catagory: "Closer", body: "While closing, ask your interviewers if they feel you could be successful here.")
 Card.create(catagory: "Closer", body: "While closing, ask your interviewers how you compare to other candidates.")
 
-User.create(email: 'DRBragg@email.com', password: 'password', password_confirmation: 'password')
-User.create(email: 'Vanessa@email.com', password: 'password', password_confirmation: 'password')
-User.create(email: 'Jennings@email.com', password: 'password', password_confirmation: 'password')
-User.create(email: 'MarkyMark@email.com', password: 'password', password_confirmation: 'password')
+User.create(email: 'DRBragg@email.com', username: 'DRBragg', password: 'password', password_confirmation: 'password', admin: true)
+User.create(email: 'Vanessa@email.com', username: 'Vanessa', password: 'password', password_confirmation: 'password')
+User.create(email: 'Jennings@email.com', username: 'Jennings', password: 'password', password_confirmation: 'password')
+User.create(email: 'MarkyMark@email.com', username: 'MarkyMark', password: 'password', password_confirmation: 'password')
