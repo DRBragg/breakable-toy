@@ -87,7 +87,7 @@ class LoginForm extends React.Component {
           />
         </FormGroup>
         <Button type='submit' onClick = {this.handleSubmit} disabled={disabled}>
-          Sign In
+          Log In
         </Button>
       </form>
     );

@@ -9,8 +9,8 @@ const CommentDisplay = (props) => {
         <Avatar>U</Avatar>
       </Media.Left>
       <Media.Body>
-        <Media.Heading>Username</Media.Heading>
-        <p>Comment body. Comment body. Comment body. Comment body. Comment body. Comment body. Comment body.</p>
+        <Media.Heading>{((props.comment.user.email).split('@')[0])}</Media.Heading>
+        <p>{props.comment.body}</p>
       </Media.Body>
     </Media>
   )

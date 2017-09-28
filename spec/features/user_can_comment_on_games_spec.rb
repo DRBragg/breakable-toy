@@ -11,9 +11,9 @@ feature "Users can comment on games", js: true do
     fill_in 'password', with: user.password
     click_button "Log In"
 
-    click_on game.link
-    click_on comment.form
-    fill_in comment.field
+    click_on "Watch This Game"
+    click_on "Comment"
+    fill_in "Comment"
     expect(page).to have_button("Comment", disabled: false)
   end
 

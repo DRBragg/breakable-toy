@@ -16,7 +16,8 @@ class VideosController < ApplicationController
     @game = Game.find(params[:id])
     @user = @game.user.email
     @deck = @game.cards
-    @comments = @game.comments
+    comments = @game.comments
+    @game_comments = comments.map {|comment| { body: comment.body, user: comment.user }}
 
     respond_to do |format|
       format.html { render :show }
@@ -25,10 +26,10 @@ class VideosController < ApplicationController
 
   def new
     @game = Game.create(user: User.find(params[:user_id]))
-    Deck.create(game: @game, card: Card.find(rand(1..4)))
-    Deck.create(game: @game, card: Card.find(rand(5..8)))
-    Deck.create(game: @game, card: Card.find(rand(9..12)))
-    Deck.create(game: @game, card: Card.find(rand(13..16)))
+    Deck.create(game: @game, card: (Card.where(catagory: "Opener")[rand(0..3)]))
+    Deck.create(game: @game, card: (Card.where(catagory: "Question")[rand(0..3)]))
+    Deck.create(game: @game, card: (Card.where(catagory: "Personal")[rand(0..3)]))
+    Deck.create(game: @game, card: (Card.where(catagory: "Closer")[rand(0..3)]))
 
     @deck = @game.cards
 
@@ -48,6 +49,15 @@ class VideosController < ApplicationController
       else
         format.json { render json: @game.errors.full_messages.join(' , ') }
       end
+    end
+  end
+
+  def destroy
+    @game = Game.find(params[:id])
+    @game.destroy
+
+    respond_to do |format|
+      format.json { head(:ok) }
     end
   end
 end

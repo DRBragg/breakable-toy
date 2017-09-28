@@ -1,5 +1,7 @@
 source 'https://rubygems.org/'
 
+ruby '2.4.0'
+
 gem 'rails', '~> 5.1.3'
 gem 'react_on_rails', '~> 9.0.1'
 gem 'pg', '~> 0.18'

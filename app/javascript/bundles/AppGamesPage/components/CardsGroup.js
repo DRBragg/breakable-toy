@@ -6,7 +6,7 @@ import UserGameCard from './UserGameCard';
 const CardsGroup = (props) => {
   let cards = props.games.map(game => {
     return(
-      <UserGameCard key={game.id} game={game} />
+      <UserGameCard key={game.id} dropGame={props.dropGame} game={game} />
     )
   })
 

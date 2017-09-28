@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Row, Col, Alert } from 'react-bootstrap';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import Avatar from 'material-ui/Avatar';
 import FlatButton from 'material-ui/FlatButton';
@@ -59,7 +59,10 @@ class UserGameCard extends React.Component {
                   +this.props.deck[3].catagory+": "+this.props.deck[3].body}
               </CardText>
               <CardText>
-                {this.state.showCommentForm && <CommentForm gameId={this.props.game.id} submit={this.handleNewComment} />}
+                {this.state.showCommentForm && !sessionStorage.getItem('id') && <Alert bsStyle="danger">Please Sign in to comment</Alert>}
+              </CardText>
+              <CardText>
+                {this.state.showCommentForm && sessionStorage.getItem('id') && <CommentForm gameId={this.props.game.id} submit={this.handleNewComment} />}
               </CardText>
               <CardActions>
                 <FlatButton label="Comment on this game" primary={true} fullWidth={true} onClick={this.showForm} />

@@ -11,7 +11,7 @@ feature "User can view their games", js: true do
     fill_in 'password', with: user.password
     click_button "Log In"
 
-    click_on "Menu"
+    find(:css, "path[d='M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z']").click
 
     expect(page).to have_link("My Games")
   end
@@ -31,10 +31,10 @@ feature "User can view their games", js: true do
     fill_in 'password', with: user.password
     click_button "Log In"
 
-    click_on "Menu"
+    find(:css, "path[d='M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z']").click
     click_on "My Games"
+
     expect(page).to have_content("Games list")
-    # expect(page).to have_content("Games list") uncomment once factory set up
   end
 
   scenario "User can view the details of a game from the games list" do
@@ -45,10 +45,11 @@ feature "User can view their games", js: true do
     fill_in 'password', with: user.password
     click_button "Log In"
 
-    click_on "Menu"
+    find(:css, "path[d='M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z']").click
     click_on "My Games"
-    click_on game.link
-    # expect(page).to have_content("game date, game video, ect") uncomment once factory set up
+    click_on "expand"
+
+    expect(page). have_content("Game")
   end
 
   scenario "User can see game by click the link on the games list" do
@@ -59,7 +60,7 @@ feature "User can view their games", js: true do
     fill_in 'password', with: user.password
     click_button "Log In"
 
-    click_on "Menu"
+    find(:css, "path[d='M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z']").click
     click_on "My Games"
     click_on "Go To"
     # expect(page).to have_content(game.username) uncomment once factory set up

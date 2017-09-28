@@ -4,6 +4,7 @@ import CardView from './CardView';
 import newGame from './AppUtils';
 import RecordRTC from 'recordrtc';
 import { Grid, Row, Col, Button, ButtonToolbar, FormGroup, FormControl, InputGroup } from 'react-bootstrap';
+import Snackbar from 'material-ui/Snackbar';
 import DeckStepper from './DeckStepper'
 
 //ensure the users browser supposort gUM
@@ -109,6 +110,14 @@ class VideoTest extends React.Component {
             {this.state.recording && <DeckStepper deck={this.props.deck} finish={this.stopRecord}/> }
             {this.state.saved && <Button bsStyle="info" href={"/videos/"+this.state.saved}>View Game</Button>}
           </Col>
+        </Row>
+        <Row>
+          <Snackbar
+            open={this.state.recording}
+            message="Recording"
+            autoHideDuration={4000}
+            onRequestClose={this.handleRequestClose}
+          />
         </Row>
       </Grid>
     )
