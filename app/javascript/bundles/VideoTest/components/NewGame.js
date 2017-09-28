@@ -115,7 +115,7 @@ class VideoTest extends React.Component {
           <Snackbar
             open={this.state.recording}
             message="Recording"
-            autoHideDuration={4000}
+            autoHideDuration={2000}
             onRequestClose={this.handleRequestClose}
           />
         </Row>

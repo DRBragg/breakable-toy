@@ -30,6 +30,7 @@ class CommentForm extends React.Component {
     }).then(response => {
       if (response.ok) {
         let newComment = response.json()
+        console.log(newComment);
         return newComment
       } else {
         console.log('wrong credentials');

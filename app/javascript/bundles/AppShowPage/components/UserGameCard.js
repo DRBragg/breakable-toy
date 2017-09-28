@@ -20,14 +20,13 @@ class UserGameCard extends React.Component {
   }
 
   showForm(){
-    this.setState({showCommentForm: !this.state.showCommentForm})
+    this.setState({showCommentForm: true})
   }
 
   handleNewComment(newComment) {
     let comments = this.state.comments
     let updatedComments = comments.concat([newComment])
-    this.setState({comments: updatedComments})
-    this.showForm()
+    this.setState({comments: updatedComments, showCommentForm: false})
   }
 
   render() {
@@ -46,7 +45,7 @@ class UserGameCard extends React.Component {
               <CardMedia>
                 <div className="embed-responsive embed-responsive-4by3">
                   <video controls className="embed-responsive-item">
-                    <source src={"http://localhost:3000"+this.props.game.vid.url} type="video/mp4"/>
+                    <source src={this.props.game.vid.url} type="video/mp4"/>
                   </video>
                 </div>
               </CardMedia>
@@ -60,8 +59,6 @@ class UserGameCard extends React.Component {
               </CardText>
               <CardText>
                 {this.state.showCommentForm && !sessionStorage.getItem('id') && <Alert bsStyle="danger">Please Sign in to comment</Alert>}
-              </CardText>
-              <CardText>
                 {this.state.showCommentForm && sessionStorage.getItem('id') && <CommentForm gameId={this.props.game.id} submit={this.handleNewComment} />}
               </CardText>
               <CardActions>

@@ -17,7 +17,7 @@ class VideosController < ApplicationController
     @user = @game.user.email
     @deck = @game.cards
     comments = @game.comments
-    @game_comments = comments.map {|comment| { body: comment.body, user: comment.user }}
+    @game_comments = comments.map {|comment| { id: comment.id, body: comment.body, user: comment.user }}
 
     respond_to do |format|
       format.html { render :show }

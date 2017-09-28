@@ -11,7 +11,7 @@ const CommentsGroup = (props) => {
   })
 
   return(
-    <div>
+    <div style={{marginBottom: 10}}>
       {userComments}
     </div>
   )

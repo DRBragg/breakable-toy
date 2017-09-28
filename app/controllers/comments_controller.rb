@@ -1,10 +1,11 @@
 class CommentsController < ApplicationController
   def create
     comment = Comment.new(comment_params)
+    show_comment = { id: comment.id, body: comment.body, user: comment.user }
 
     respond_to do |format|
       if comment.save
-        format.json { render json: comment, status: :created }
+        format.json { render json: show_comment, status: :created }
       else
         format.json { head(:unauthorized) }
       end
