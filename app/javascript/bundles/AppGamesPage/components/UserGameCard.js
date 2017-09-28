@@ -11,7 +11,8 @@ class GameCard extends React.Component {
     super(props);
     this.state = {
       expanded: false,
-      open: false
+      open: false,
+      admin: sessionStorage.getItem('admin')
     };
   }
 
@@ -69,7 +70,7 @@ class GameCard extends React.Component {
       <Col xs={8} xsOffset={2} className="index-card">
         <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange}>
           <CardHeader
-            title="Video Title"
+            title={this.state.admin ? `${this.props.game.user}'s Video` : "My Video"}
             subtitle={"Recorded on: "+this.props.game.recordedDate}
             actAsExpander={true}
             showExpandableButton={true}

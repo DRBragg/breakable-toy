@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { registrations: 'users'}
 
-
   resources :videos, only: [:index, :show] do
     resources :comments
   end
@@ -14,7 +13,4 @@ Rails.application.routes.draw do
     resources :videos, only: [:new, :create, :destroy]
   end
 
-  namespace :admin do
-    resources :videos, only: [:index]
-  end
 end

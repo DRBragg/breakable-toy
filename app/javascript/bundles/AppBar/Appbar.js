@@ -42,7 +42,9 @@ class Appbar extends React.Component {
   }
 
   handleLogin(admin) {
-    console.log('handleLogin @ Appbar', admin);
+    if (admin) {
+      sessionStorage.setItem('admin', true);
+    }
     this.setState({ loggedIn: true, isAdmin: admin });
   }
 
@@ -99,8 +101,8 @@ class Appbar extends React.Component {
         </List>
         <Divider />
         {this.state.isAdmin && <List>
-          <Subheader>Admin Links</Subheader>
-          <ListItem primaryText="All Games" leftIcon={<ActionHome />} href="/admin/videos/index"/>
+          <Subheader>Admin Options</Subheader>
+          <ListItem primaryText="All Games" href={"/users/"+sessionStorage.getItem('id')}/>
         </List>}
         </Drawer>
         <Modal show={this.state.showLogin} onHide={this.close}>

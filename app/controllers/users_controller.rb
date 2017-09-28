@@ -1,10 +1,19 @@
 class UsersController < ApplicationController
   def show
-    @games = Game.where(user: params[:id])
-    @display = []
+    if User.find(params[:id]).admin
+      @games = Game.all
+      @display = []
 
-    @games.each do |game|
-      @display << {id: game.id, video: game.vid, recordedDate: game.created_at.strftime("%m/%d/%Y"), cards: game.cards}
+      @games.each do |game|
+        @display << {id: game.id, video: game.vid, user: game.user.username, recordedDate: game.created_at.strftime("%m/%d/%Y"), cards: game.cards}
+      end
+    else
+      @games = Game.where(user: params[:id])
+      @display = []
+
+      @games.each do |game|
+        @display << {id: game.id, video: game.vid, recordedDate: game.created_at.strftime("%m/%d/%Y"), cards: game.cards}
+      end
     end
   end
 
