@@ -9,6 +9,7 @@ class SignUpForm extends React.Component {
       username: "",
       password: "",
       passwordConfirmation: "",
+      file: "",
       error: false
     }
     this.handleChange = this.handleChange.bind(this)
@@ -123,6 +124,12 @@ class SignUpForm extends React.Component {
           <FormControl.Feedback />
           <HelpBlock>Passwords must match</HelpBlock>
         </FormGroup>
+        <FieldGroup
+          name="avatar"
+          type="file"
+          label="Profile Picture"
+          help="Optional"
+        />
         <Button type='submit' onClick = {this.handleSubmit} disabled={disabled}>
           Sign Up
         </Button>
