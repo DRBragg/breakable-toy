@@ -56,7 +56,7 @@ class GameCard extends React.Component {
     const actions = [
       <FlatButton
         label="Delete"
-        primary={true}
+        secondary={true}
         onClick={this.handleDelete}
       />,
       <FlatButton
@@ -86,8 +86,8 @@ class GameCard extends React.Component {
             <video src={this.props.game.video.url} alt=""/>
           </CardMedia>
           <CardActions>
-          <FlatButton label="Go to" href={"https://interview-game-test.herokuapp.com/videos/"+this.props.game.id} />
-          <FlatButton label="Delete" onClick={this.handleOpen} />
+          <FlatButton primary={true} label="Go to" href={"https://interview-game-test.herokuapp.com/videos/"+this.props.game.id} />
+          <FlatButton secondary={true} label="Delete" onClick={this.handleOpen} />
           </CardActions>
         </Card>
         <Dialog

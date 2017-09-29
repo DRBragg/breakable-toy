@@ -14,6 +14,7 @@ class VideosController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+    @date = @game.created_at.strftime("%m/%d/%Y")
     @user = @game.user.username
     @deck = @game.cards
     comments = @game.comments

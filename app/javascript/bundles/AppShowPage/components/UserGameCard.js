@@ -49,7 +49,7 @@ class UserGameCard extends React.Component {
                 </div>
               </CardMedia>
               <CardText>
-                Date Recorded: {this.props.game.created_at} <br/>
+                Date Recorded: {this.props.date} <br/>
                 Cards in Deck: {
                   this.props.deck[0].catagory+": "+this.props.deck[0].body+", "
                   +this.props.deck[1].catagory+": "+this.props.deck[1].body+", "
