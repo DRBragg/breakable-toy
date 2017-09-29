@@ -4,6 +4,7 @@ import CardView from './CardView';
 import RecordRTC from 'recordrtc';
 import { Grid, Row, Col, Button, ButtonToolbar, FormGroup, FormControl, InputGroup, Alert} from 'react-bootstrap';
 import Snackbar from 'material-ui/Snackbar';
+import RaisedButton from 'material-ui/RaisedButton';
 import DeckStepper from './DeckStepper';
 import Redirect from './Redirect'
 import ReactLoading from 'react-loading';
@@ -95,17 +96,17 @@ class VideoTest extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={6} xsOffset={3}>
+          <Col lg={6} lgOffset={3}>
             <Webcam src={this.state.src}/>
             <br/>
           </Col>
         </Row>
         <Row>
-          <Col xs={6} xsOffset={3} className="text-center">
-            {!this.state.recording && !this.state.saving && !this.state.saved && <Button bsStyle="success" onClick={this.startRecord}>Start Game</Button>}
+          <Col lg={6} lgOffset={3} xs={12} className="text-center">
+            {!this.state.recording && !this.state.saving && !this.state.saved && <RaisedButton label="Start Game" secondary={true} onClick={this.startRecord}/>}
             {this.state.recording && <DeckStepper deck={this.props.deck} finish={this.stopRecord}/> }
-            {this.state.saving && <Col xs={1} xsOffset={5}> <ReactLoading type={'balls'} color={'#00BCD4'}/> </Col>}
-            {this.state.saved && <Button bsStyle="info" href={"/videos/"+this.state.saved}>View Game</Button>}
+            {this.state.saving && <Col xs={1} xsOffset={5}> <ReactLoading type={'balls'} color={'#ff9e08'}/> </Col>}
+            {this.state.saved && <RaisedButton label="View Game" primary={true} href={"/videos/"+this.state.saved}/>}
           </Col>
         </Row>
         <Row>

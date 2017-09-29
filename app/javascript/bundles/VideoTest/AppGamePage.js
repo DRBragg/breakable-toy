@@ -10,7 +10,7 @@ const overwrites = {
   "palette": {
       "primary1Color": Colors.blue800,
       "primary2Color": Colors.blue700,
-      "accent1Color": Colors.amberA700,
+      "accent1Color": '#ff9e08',
       "accent2Color": Colors.amber500,
       "accent3Color": Colors.amber200
   },
