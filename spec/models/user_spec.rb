@@ -9,7 +9,7 @@ RSpec.describe User, type: :model do
 
   it { should have_valid(:username).when('DRBragg', 'Username123') }
   it { should_not have_valid(:username).when('', nil) }
-  it { should validate_uniqueness_of(:username) }
+  # it { should validate_uniqueness_of(:username) }
 
   it 'has a mathcing password and password confirmation' do
     user = User.new
@@ -21,7 +21,4 @@ RSpec.describe User, type: :model do
     expect(user).to_not be_valid
     expect(user.errors[:password_confirmation]).to_not be_blank
   end
-
-  it { should have_valid(:game).when(Game.new) }
-  it { should_not have_valid(:game).when(nil) }
 end

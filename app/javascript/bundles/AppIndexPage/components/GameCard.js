@@ -5,32 +5,54 @@ import Avatar from 'material-ui/Avatar';
 import FlatButton from 'material-ui/FlatButton';
 
 
-const GameCard = (props) => {
+class GameCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      depth: 1
+    }
+    this.onHover = this.onHover.bind(this)
+    this.onLeave = this.onLeave.bind(this)
+  }
+
+  onHover(){
+    this.setState({depth: 5})
+  }
+
+  onLeave(){
+    this.setState({depth: 1})
+  }
+
+  render(){
   return(
-    <Col md={3} className="index-card">
-    <Card>
+    <Col lg={3} md={6} sm={12} className="index-card">
+    <Card zDepth={this.state.depth} onMouseEnter={this.onHover} onMouseLeave={this.onLeave}>
       <CardHeader
-        title={props.user}
+        title={this.props.user}
         subtitle="Industry"
-        avatar= {<Avatar>{props.user.charAt(0)}</Avatar>}
+        avatar= {<Avatar>{this.props.user.charAt(0)}</Avatar>}
       />
       <CardMedia>
-        <video src={props.video.url} alt="" />
+        <video src={this.props.video.url} alt={this.props.user+"'s video"} />
       </CardMedia>
-      <CardTitle title={props.user+"'s Game"} subtitle={"Date Recorded: "+props.game.recordedDate} />
-      <CardText>
+      <CardTitle
+        title={this.props.user+"'s Game"}
+        subtitle={"Date Recorded: "+this.props.game.recordedDate}
+        actAsExpander={true}
+        showExpandableButton={true} />
+      <CardText expandable={true}>
         Cards in deck: {
-          props.game.cards[0].catagory+": "+props.game.cards[0].body+", "
-          +props.game.cards[1].catagory+": "+props.game.cards[1].body+", "
-          +props.game.cards[2].catagory+": "+props.game.cards[2].body+", "
-          +props.game.cards[3].catagory+": "+props.game.cards[3].body}
+          this.props.game.cards[0].catagory+": "+this.props.game.cards[0].body+", "
+          +this.props.game.cards[1].catagory+": "+this.props.game.cards[1].body+", "
+          +this.props.game.cards[2].catagory+": "+this.props.game.cards[2].body+", "
+          +this.props.game.cards[3].catagory+": "+this.props.game.cards[3].body}
       </CardText>
       <CardActions>
-        <FlatButton label="Watch This Game" primary={true} fullWidth={true} href={"videos/"+props.game.id}/>
+        <FlatButton label="Watch This Game" primary={true} fullWidth={true} href={"videos/"+this.props.game.id}/>
       </CardActions>
     </Card>
     </Col>
-  )
+  )}
 }
 
 export default GameCard;

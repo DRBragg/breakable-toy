@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Row } from 'react-bootstrap';
 import CardsGroup from './CardsGroup';
+import Redirect from './Redirect'
 
 
 class GamePage extends React.Component {
@@ -19,13 +20,19 @@ class GamePage extends React.Component {
   }
 
   render() {
-    return(
-      <Grid>
-        <Row>
-          <CardsGroup dropGame={this.dropGame} games={this.state.games} />
-        </Row>
-      </Grid>
-    )
+    if (sessionStorage.getItem('id') === ((window.location.pathname).split('/users/'))[1]) {
+      return(
+        <Grid>
+          <Row>
+            <CardsGroup dropGame={this.dropGame} games={this.state.games} />
+          </Row>
+        </Grid>
+      )
+    } else {
+      return (
+        <Redirect />
+      )
+    }
   }
 }
 

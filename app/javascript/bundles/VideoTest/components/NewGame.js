@@ -1,11 +1,12 @@
 import React from 'react';
 import Webcam from './Webcam';
 import CardView from './CardView';
-import newGame from './AppUtils';
 import RecordRTC from 'recordrtc';
-import { Grid, Row, Col, Button, ButtonToolbar, FormGroup, FormControl, InputGroup } from 'react-bootstrap';
+import { Grid, Row, Col, Button, ButtonToolbar, FormGroup, FormControl, InputGroup, Alert} from 'react-bootstrap';
 import Snackbar from 'material-ui/Snackbar';
-import DeckStepper from './DeckStepper'
+import DeckStepper from './DeckStepper';
+import Redirect from './Redirect'
+import ReactLoading from 'react-loading';
 
 //ensure the users browser supposort gUM
 const hasGetUserMedia = !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
@@ -20,12 +21,12 @@ class VideoTest extends React.Component {
       recording: false,
       upload: null,
       video: null,
+      saving: false,
       saved: false
     };
     this.requestUserMedia = this.requestUserMedia.bind(this)
     this.startRecord = this.startRecord.bind(this)
     this.stopRecord = this.stopRecord.bind(this)
-    this.handleChange = this.handleChange.bind(this)
   }
 
   //alert user on Mount if their browser does not support gUM
@@ -64,7 +65,7 @@ class VideoTest extends React.Component {
 
   //on recording stop call stopRecording from RecordRTC in state
   stopRecord() {
-    console.log('recording stopped')
+    this.setState({saving: true, recording: false})
     this.state.recordVideo.stopRecording(() => {
       let recordedBlob = this.state.recordVideo.getBlob();
       let header = ReactOnRails.authenticityHeaders({'Accept': 'application/json , */*', 'X-User-Email': sessionStorage.getItem('email'), 'X-User-token': sessionStorage.getItem('token')});
@@ -79,18 +80,13 @@ class VideoTest extends React.Component {
           return savedVideo
         }
       }).then(savedVideo => {
-        this.setState({ recording: false, saved: savedVideo.id });
+        this.setState({ saving: false, saved: savedVideo.id });
       });
     });
   }
 
-  //set state to game type that the user chose
-  handleChange(e){
-    setGame = e.target.value;
-    this.setState({ gameType: setGame})
-  }
-
   render() {
+    if (sessionStorage.getItem('id')) {
     return(
       <Grid>
         <Row>
@@ -106,8 +102,9 @@ class VideoTest extends React.Component {
         </Row>
         <Row>
           <Col xs={6} xsOffset={3} className="text-center">
-            {!this.state.recording && !this.state.saved && <Button bsStyle="success" onClick={this.startRecord}>Start Game</Button>}
+            {!this.state.recording && !this.state.saving && !this.state.saved && <Button bsStyle="success" onClick={this.startRecord}>Start Game</Button>}
             {this.state.recording && <DeckStepper deck={this.props.deck} finish={this.stopRecord}/> }
+            {this.state.saving && <Col xs={1} xsOffset={5}> <ReactLoading type={'balls'} color={'#00BCD4'}/> </Col>}
             {this.state.saved && <Button bsStyle="info" href={"/videos/"+this.state.saved}>View Game</Button>}
           </Col>
         </Row>
@@ -121,6 +118,11 @@ class VideoTest extends React.Component {
         </Row>
       </Grid>
     )
+  } else {
+    return (
+      <Redirect />
+    )
+  }
   }
 }
 

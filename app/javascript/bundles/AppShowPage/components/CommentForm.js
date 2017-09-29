@@ -1,5 +1,6 @@
 import React from 'react';
 import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
+import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 
 class CommentForm extends React.Component {
@@ -55,19 +56,17 @@ class CommentForm extends React.Component {
     }
 
     return (
-      <form>
-        <FormGroup>
-          <ControlLabel>Comment</ControlLabel>
-          <FormControl
-            type="text"
-            name="body"
-            value={this.state.body}
-            placeholder="Add a comment"
-            onChange={this.handleChange}
-          />
-        </FormGroup>
+      <div>
+      <TextField
+          name="body"
+          hintText="Add your comment"
+          floatingLabelText="Comment"
+          value={this.state.body}
+          onChange={this.handleChange}
+        />
+        <br />
         <FlatButton label="Add Comment" primary={true} onClick={this.handleSubmit} disabled={disabled}/>
-      </form>
+        </div>
     );
   }
 }

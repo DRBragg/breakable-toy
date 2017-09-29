@@ -67,7 +67,7 @@ class GameCard extends React.Component {
     ];
 
     return(
-      <Col xs={8} xsOffset={2} className="index-card">
+      <Col lg={8} lgOffset={2} className="index-card">
         <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange}>
           <CardHeader
             title={this.state.admin ? `${this.props.game.user}'s Video` : "My Video"}

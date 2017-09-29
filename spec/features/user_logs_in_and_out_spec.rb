@@ -13,8 +13,8 @@ feature "User can log in and out", js: true do
     expect(page).to have_button("Log In", disabled: false)
     click_button "Log In"
 
-    expect(page).to have_link("Sign Out")
-    expect(page).to_not have_link("Log In")
+    expect(page).to have_content("SIGN OUT")
+    expect(page).to_not have_content("LOG IN/SIGN UP")
   end
 
   scenario "User cannot log in with bad info" do
@@ -38,11 +38,11 @@ feature "User can log in and out", js: true do
     fill_in 'password', with: user.password
     click_button "Log In"
 
-    expect(page).to have_link("Sign Out")
-    expect(page).to_not have_link("Log In")
+    expect(page).to have_content("SIGN OUT")
+    expect(page).to_not have_content("LOG IN/SIGN UP")
     click_on "Sign Out"
 
-    expect(page).to_not have_link("Sign Out")
-    expect(page).to have_link("Log In")
+    expect(page).to have_content("LOG IN/SIGN UP")
+    expect(page).to_not have_content("SIGN OUT")
   end
 end

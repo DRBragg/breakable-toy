@@ -18,8 +18,17 @@ feature "Users can sign up for an account", js: true do
     click_on "Sign Up"
 
     fill_in 'Email', with: 'user@email.com'
-    fill_in 'user_password', with: 'password'
+    fill_in 'Username', with: 'username'
+    fill_in 'password', with: 'password'
     fill_in 'Password Confirmation', with: 'password'
+
+    expect(page).to have_button("Sign Up", disabled: false)
+  end
+
+  scenario "Visitor cannot sign up with form not filled out" do
+    visit root_path
+    click_on "Log in/Sign Up"
+    click_on "Sign Up"
 
     expect(page).to have_button("Sign Up", disabled: false)
   end
@@ -30,18 +39,11 @@ feature "Users can sign up for an account", js: true do
     click_on "Sign Up"
 
     fill_in 'Email', with: 'user@email.com'
-    fill_in 'user_password', with: 'password'
+    fill_in 'Username', with: 'username'
+    fill_in 'password', with: 'password'
     fill_in 'Password Confirmation', with: 'password'
     click_on 'Sign Up'
 
-    expect(page).to have_link("Sign Out")
-  end
-
-  scenario "Visitor cannot sign up with form not filled out" do
-    visit root_path
-    click_on "Log in/Sign Up"
-    click_on "Sign Up"
-
-    expect(page).to have_button("Sign Up", disabled: false)
+    expect(page).to have_content("SIGN OUT")
   end
 end

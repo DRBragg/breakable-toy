@@ -68,7 +68,7 @@ class LoginForm extends React.Component {
         Wrong Email/Password!
       </Alert>}
         <FormGroup>
-          <ControlLabel>Username</ControlLabel>
+          <ControlLabel>Email</ControlLabel>
           <FormControl
             type="text"
             name="email"

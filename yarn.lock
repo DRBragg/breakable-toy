@@ -4377,6 +4377,10 @@ react-event-listener@^0.4.5:
     prop-types "^15.5.4"
     warning "^3.0.0"
 
+react-loading@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/react-loading/-/react-loading-0.1.4.tgz#b329ff2b870f1dc26c7068e91a1574f7dda27e67"
+
 react-multimedia-capture@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/react-multimedia-capture/-/react-multimedia-capture-1.0.2.tgz#ba22b874f1012eb37ca6eac8aac1d3268b52a41c"

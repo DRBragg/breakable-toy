@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BreakableToy</title>
+    <title>The Interview Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -10,7 +12,7 @@
 
   <body>
     <%= react_component("App", prerender: false) %>
-    
+
     <%= yield %>
   </body>
 </html>

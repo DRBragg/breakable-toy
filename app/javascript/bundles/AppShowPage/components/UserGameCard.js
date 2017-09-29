@@ -33,7 +33,7 @@ class UserGameCard extends React.Component {
     return(
       <Grid>
         <Row>
-          <Col xs={8} xsOffset={2}>
+          <Col lg={8} lgOffset={2}>
             <br/>
             <Card>
               <CardHeader
@@ -56,7 +56,7 @@ class UserGameCard extends React.Component {
                   +this.props.deck[2].catagory+": "+this.props.deck[2].body+", "
                   +this.props.deck[3].catagory+": "+this.props.deck[3].body}
               </CardText>
-              <CardText>
+              <CardText className="text-center">
                 {this.state.showCommentForm && !sessionStorage.getItem('id') && <Alert bsStyle="danger">Please Sign in to comment</Alert>}
                 {this.state.showCommentForm && sessionStorage.getItem('id') && <CommentForm gameId={this.props.game.id} submit={this.handleNewComment} />}
               </CardText>
@@ -67,12 +67,12 @@ class UserGameCard extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={8} xsOffset={2} className="text-center">
+          <Col lg={8} lgOffset={2} className="text-center">
             <h3>Comments</h3>
           </Col>
         </Row>
         <Row>
-          <Col xs={8} xsOffset={2}>
+          <Col lg={8} lgOffset={2}>
             <CommentsGroup comments={this.state.comments} />
           </Col>
         </Row>

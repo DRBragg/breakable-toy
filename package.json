@@ -13,6 +13,7 @@
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.3",
     "react-dom": "^15.6.1",
+    "react-loading": "^0.1.4",
     "react-multimedia-capture": "^1.0.2",
     "react-on-rails": "^9.0.2",
     "recordrtc": "^5.4.2"
