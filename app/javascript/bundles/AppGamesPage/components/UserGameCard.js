@@ -86,7 +86,7 @@ class GameCard extends React.Component {
             <video src={this.props.game.video.url} alt=""/>
           </CardMedia>
           <CardActions>
-          <FlatButton primary={true} label="Go to" href={"https://interview-game-test.herokuapp.com/videos/"+this.props.game.id} />
+          <FlatButton primary={true} label="Go to" href={window.location.origin+"/videos/"+this.props.game.id} />
           <FlatButton secondary={true} label="Delete" onClick={this.handleOpen} />
           </CardActions>
         </Card>

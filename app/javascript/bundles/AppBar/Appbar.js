@@ -75,7 +75,6 @@ class Appbar extends React.Component {
   }
 
   render() {
-    console.log('current state', this.state);
     return(
       <div>
       <AppBar
@@ -113,7 +112,7 @@ class Appbar extends React.Component {
             <LoginForm login={this.handleLogin} close={this.close}/>
           </Modal.Body>
           <Modal.Footer>
-            No Account? <FlatButton onClick={this.openSignUp} label="Sign Up" />
+            No Account? <FlatButton primary={true} onClick={this.openSignUp} label="Sign Up" />
           </Modal.Footer>
         </Modal>
         <Modal show={this.state.showSignUp} onHide={this.close}>
@@ -124,7 +123,7 @@ class Appbar extends React.Component {
             <SignUpForm login={this.handleLogin} close={this.close}/>
           </Modal.Body>
           <Modal.Footer>
-            Already have an Account? <FlatButton onClick={this.openLogIn} label="Log In" />
+            Already have an Account? <FlatButton primary={true} onClick={this.openLogIn} label="Log In" />
           </Modal.Footer>
         </Modal>
         </div>

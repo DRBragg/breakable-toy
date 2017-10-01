@@ -114,12 +114,9 @@ RSpec.configure do |config|
     require "rack/handler/puma"
     Rack::Handler::Puma.run(app, Port: port)
   end
-  # 
-  # config.after do
-  #   Capybara.execute_script "sessionStorage.clear()"
-  # end
 
-  # Capybara.default_max_wait_time = 15
+  Capybara.default_max_wait_time = 10
+
   puts "Capybara using driver: #{Capybara.javascript_driver}"
 
   Capybara.save_path = Rails.root.join("tmp", "capybara")
