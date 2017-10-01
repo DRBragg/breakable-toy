@@ -16,6 +16,14 @@ const overwrites = {
   },
   "appBar": {
       "textColor": Colors.white
+  },
+  "stepper": {
+        "textColor": Colors.white,
+        "disabledTextColor": fade(Colors.white, 0.22)
+  },
+  "raisedButton": {
+        "primaryTextColor": Colors.white,
+        "secondaryTextColor": Colors.white
   }
 };
 

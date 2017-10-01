@@ -1,8 +1,8 @@
 require 'faker'
 
 FactoryGirl.define do
-  factory :card do 
+  factory :card do
     catagory "Catagory"
-    body {Faker::ChuckNorris.unique.fact}
+    body {Faker::Internet.unique.password(8)}
   end
 end

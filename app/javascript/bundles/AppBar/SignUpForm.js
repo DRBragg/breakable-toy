@@ -124,12 +124,14 @@ class SignUpForm extends React.Component {
           <FormControl.Feedback />
           <HelpBlock>Passwords must match</HelpBlock>
         </FormGroup>
-        <FieldGroup
-          name="avatar"
-          type="file"
-          label="Profile Picture"
-          help="Optional"
-        />
+        <FormGroup>
+          <ControlLabel>Profile Picture</ControlLabel>
+          <FormControl
+            type="file"
+            name="avatar"
+          />
+          <HelpBlock>Optional</HelpBlock>
+        </FormGroup>
         <Button type='submit' onClick = {this.handleSubmit} disabled={disabled}>
           Sign Up
         </Button>
