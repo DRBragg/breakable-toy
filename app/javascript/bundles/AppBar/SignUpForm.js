@@ -48,7 +48,7 @@ class SignUpForm extends React.Component {
   }
 
   clearForm(admin){
-    this.setState({ email: '', username: '', password: '', passwordConfirmation: '' })
+    this.setState({ email: '', username: '', industry: '', password: '', passwordConfirmation: '' })
     this.props.login(admin);
     this.props.close();
   }
