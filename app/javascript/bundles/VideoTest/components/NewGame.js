@@ -2,7 +2,7 @@ import React from 'react';
 import Webcam from './Webcam';
 import CardView from './CardView';
 import RecordRTC from 'recordrtc';
-import { Grid, Row, Col, Button, ButtonToolbar, FormGroup, FormControl, InputGroup, Alert} from 'react-bootstrap';
+import { Grid, Row, Col, FormGroup, FormControl, InputGroup, Alert} from 'react-bootstrap';
 import Snackbar from 'material-ui/Snackbar';
 import RaisedButton from 'material-ui/RaisedButton';
 import DeckStepper from './DeckStepper';

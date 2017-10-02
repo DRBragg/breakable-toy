@@ -21,6 +21,6 @@ Card.create(catagory: "Closer", body: "While closing, ask your interviewers if t
 Card.create(catagory: "Closer", body: "While closing, ask your interviewers how you compare to other candidates.")
 
 User.create(email: 'DRBragg@email.com', username: 'DRBragg', industry: 'Automotive', password: 'password', password_confirmation: 'password', admin: true)
-User.create(email: 'Vanessa@email.com', username: 'Vanessa', industry: 'Pharmaceutical', password: 'password', password_confirmation: 'password')
-User.create(email: 'Jennings@email.com', username: 'Jennings', industry: 'Recruiting', password: 'password', password_confirmation: 'password')
+User.create(email: 'cptmerica@email.com', username: 'CptMerica', industry: 'Avenger', password: 'password', password_confirmation: 'password')
+User.create(email: 'TStark@email.com', username: 'TStark', industry: 'Engineering', password: 'password', password_confirmation: 'password')
 User.create(email: 'MarkyMark@email.com', username: 'MarkyMark', industry: 'Education', password: 'password', password_confirmation: 'password')
