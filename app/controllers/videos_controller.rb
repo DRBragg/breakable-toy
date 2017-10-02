@@ -4,7 +4,7 @@ class VideosController < ApplicationController
     @display = []
     @games = Game.all
     @games.each do |game|
-      @display << {id: game.id, user: game.user.username, video: game.vid, recordedDate: game.created_at.strftime("%m/%d/%Y"), cards: game.cards}
+      @display << {id: game.id, user: game.user.username, industry: game.user.industry, video: game.vid, recordedDate: game.created_at.strftime("%m/%d/%Y"), cards: game.cards}
     end
 
     respond_to do |format|
@@ -15,7 +15,7 @@ class VideosController < ApplicationController
   def show
     @game = Game.find(params[:id])
     @date = @game.created_at.strftime("%m/%d/%Y")
-    @user = @game.user.username
+    @user = @game.user
     @deck = @game.cards
     comments = @game.comments
     @game_comments = comments.map {|comment| { id: comment.id, body: comment.body, user: comment.user }}

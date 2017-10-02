@@ -29,7 +29,7 @@ class GameCard extends React.Component {
     <Card zDepth={this.state.depth} onMouseEnter={this.onHover} onMouseLeave={this.onLeave}>
       <CardHeader
         title={this.props.user}
-        subtitle="Industry"
+        subtitle={this.props.game.industry}
         avatar= {<Avatar>{this.props.user.charAt(0)}</Avatar>}
       />
       <CardMedia>
@@ -42,9 +42,9 @@ class GameCard extends React.Component {
         showExpandableButton={true} />
       <CardText expandable={true}>
         Cards in deck: {
-          this.props.game.cards[0].catagory+": "+this.props.game.cards[0].body+", "
-          +this.props.game.cards[1].catagory+": "+this.props.game.cards[1].body+", "
-          +this.props.game.cards[2].catagory+": "+this.props.game.cards[2].body+", "
+          this.props.game.cards[0].catagory+": "+this.props.game.cards[0].body+" "
+          +this.props.game.cards[1].catagory+": "+this.props.game.cards[1].body+" "
+          +this.props.game.cards[2].catagory+": "+this.props.game.cards[2].body+" "
           +this.props.game.cards[3].catagory+": "+this.props.game.cards[3].body}
       </CardText>
       <CardActions>

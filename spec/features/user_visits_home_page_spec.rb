@@ -55,6 +55,5 @@ feature "User visits home page", js: true do
     expect(page).to have_link("Home")
     expect(page).to have_link("New Game")
     expect(page).to have_link("My Games")
-    # expect(page).to have_link("My Account")
   end
 end

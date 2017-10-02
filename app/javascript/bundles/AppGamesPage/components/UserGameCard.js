@@ -78,9 +78,9 @@ class GameCard extends React.Component {
           <CardMedia
             expandable={true}
             overlay={<CardTitle title="Cards in Deck:" subtitle={
-              this.props.game.cards[0].catagory+": "+this.props.game.cards[0].body+", "
-              +this.props.game.cards[1].catagory+": "+this.props.game.cards[1].body+", "
-              +this.props.game.cards[2].catagory+": "+this.props.game.cards[2].body+", "
+              this.props.game.cards[0].catagory+": "+this.props.game.cards[0].body+" "
+              +this.props.game.cards[1].catagory+": "+this.props.game.cards[1].body+" "
+              +this.props.game.cards[2].catagory+": "+this.props.game.cards[2].body+" "
               +this.props.game.cards[3].catagory+": "+this.props.game.cards[3].body} />}
           >
             <video src={this.props.game.video.url} alt=""/>

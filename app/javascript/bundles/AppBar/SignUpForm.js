@@ -7,6 +7,7 @@ class SignUpForm extends React.Component {
     this.state = {
       email: "",
       username: "",
+      industy: "",
       password: "",
       passwordConfirmation: "",
       file: "",
@@ -25,7 +26,7 @@ class SignUpForm extends React.Component {
   handleSubmit(e){
     e.preventDefault()
     let header = ReactOnRails.authenticityHeaders({'Accept': 'application/json', 'Content-Type': 'application/json'});
-    let formPayload = {user:{email: this.state.email, password: this.state.password, password_confirmation: this.state.passwordConfirmation, username: this.state.username}}
+    let formPayload = {user:{email: this.state.email, username: this.state.username, industry: this.state.industry, password: this.state.password, password_confirmation: this.state.passwordConfirmation}}
     fetch("/users", {
       method: "POST",
       headers: header,
@@ -100,6 +101,16 @@ class SignUpForm extends React.Component {
             onChange={this.handleChange}
           />
         </FormGroup>
+        <FormGroup>
+          <ControlLabel>Industry</ControlLabel>
+          <FormControl
+            type="text"
+            name="industry"
+            value={this.state.industry}
+            placeholder="Industry"
+            onChange={this.handleChange}
+          />
+        </FormGroup>
         <FormGroup validationState={this.getValidationState()}>
           <ControlLabel>Password</ControlLabel>
           <FormControl
@@ -124,14 +135,7 @@ class SignUpForm extends React.Component {
           <FormControl.Feedback />
           <HelpBlock>Passwords must match</HelpBlock>
         </FormGroup>
-        <FormGroup>
-          <ControlLabel>Profile Picture</ControlLabel>
-          <FormControl
-            type="file"
-            name="avatar"
-          />
-          <HelpBlock>Optional</HelpBlock>
-        </FormGroup>
+
         <Button type='submit' onClick = {this.handleSubmit} disabled={disabled}>
           Sign Up
         </Button>

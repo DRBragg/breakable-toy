@@ -37,9 +37,9 @@ class UserGameCard extends React.Component {
             <br/>
             <Card>
               <CardHeader
-                title={this.props.user}
-                subtitle="Industry"
-                avatar= {<Avatar>{this.props.user.charAt(0)}</Avatar>}
+                title={this.props.user.username}
+                subtitle={this.props.user.industry}
+                avatar= {<Avatar>{this.props.user.username.charAt(0)}</Avatar>}
               />
               <CardMedia>
                 <div className="embed-responsive embed-responsive-4by3">
@@ -51,9 +51,9 @@ class UserGameCard extends React.Component {
               <CardText>
                 Date Recorded: {this.props.date} <br/>
                 Cards in Deck: {
-                  this.props.deck[0].catagory+": "+this.props.deck[0].body+", "
-                  +this.props.deck[1].catagory+": "+this.props.deck[1].body+", "
-                  +this.props.deck[2].catagory+": "+this.props.deck[2].body+", "
+                  this.props.deck[0].catagory+": "+this.props.deck[0].body+" "
+                  +this.props.deck[1].catagory+": "+this.props.deck[1].body+" "
+                  +this.props.deck[2].catagory+": "+this.props.deck[2].body+" "
                   +this.props.deck[3].catagory+": "+this.props.deck[3].body}
               </CardText>
               <CardText className="text-center">
