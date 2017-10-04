@@ -1,24 +1,21 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+React on Rails application featuring WebCam recording. Users can record themselves in a mock interview with a variety of prompts and then play back their recording to see how they performed. Users can also have other users watch and then leave feedback.
 
-Things you may want to cover:
+I wanted to challenge myself to use a technology I had never used before. Learning to access, manipulate, and persist user WebCam footage was an awesome and fun challenge.
 
-* Ruby version
+Tech used:
 
-* System dependencies
+* Ruby On Rail
 
-* Configuration
+* React
 
-* Database creation
+* React on Rails from ShakaCode
 
-* Database initialization
+* WebRTC
 
-* How to run the test suite
+* PostgreSQL
 
-* Services (job queues, cache servers, search engines, etc.)
+Live Demo:
 
-* Deployment instructions
-
-* ...
+* https://interview-game-test.herokuapp.com/
